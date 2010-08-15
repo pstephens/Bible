@@ -1,9 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builder", "Builder", "{FB724BCA-B318-483C-A821-23D35348CCC0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2015D116-DF79-4A76-B625-9D8739346651}"
+	ProjectSection(SolutionItems) = preProject
+		Data\Av.bible = Data\Av.bible
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builders", "Builders", "{4F648B32-FAE8-413B-BE38-1559E35AB523}"
 EndProject
