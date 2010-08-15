@@ -1,0 +1,314 @@
+B:Genesis
+Z:Gen
+T1:The First Book Of Moses
+T2:Called
+T3:Genesis
+B:Exodus
+Z:Exo
+T1:The Second Book Of Moses
+T2:Called
+T3:Exodus
+B:Leviticus
+Z:Lev
+T1:The Third Book Of Moses
+T2:Called
+T3:Leviticus
+B:Numbers
+Z:Num
+T1:The Fourth Book Of Moses
+T2:Called
+T3:Numbers
+B:Deuteronomy
+Z:Deu
+T1:The Fifth Book Of Moses
+T2:Called
+T3:Deuteronomy
+B:Joshua
+Z:Jos
+T3:The Book Of Joshua
+B:Judges
+Z:Jg
+T3:The Book Of Judges
+B:Ruth
+Z:Ru
+T3:The Book Of Ruth
+B:Samuel1
+Z:1Sa
+A:1 Samuel
+T1:The First Book Of
+T3:Samuel
+T4:Otherwise Called
+T5:The First Book of the Kings
+B:Samuel2
+Z:2Sa
+A:2 Samuel
+T1:The Second Book Of
+T3:Samuel
+T4:Otherwise Called
+T5:The Second Book Of The Kings
+B:Kings1
+Z:1Ki
+A:1 Kings
+T1:The First Book Of The
+T3:Kings
+T4:Commonly Called
+T5:The Third Book Of The Kings
+B:Kings2
+Z:2Ki
+A:2 Kings
+T1:The Second Book Of The
+T3:Kings
+T4:Commonly Called
+T5:The Fourth Book Of The Kings
+B:Chronicles1
+Z:1Ch
+A:1 Chronicles
+T1:The First Book Of The
+T3:Chronicles
+B:Chronicles2
+Z:2Ch
+A:2 Chronicles
+T1:The Second Book Of The
+T3:Chronicles
+B:Ezra
+Z:Ezr
+T3:Ezra
+B:Nehemiah
+Z:Ne
+T3:The Book Of Nehemiah
+B:Esther
+Z:Es
+T3:The Book Of Esther
+B:Job
+Z:Job
+T3:The Book Of Job
+B:Psalms
+Z:Ps
+T3:The Book Of Psalms
+H:119:1:1:Aleph
+H:119:9:2:Beth
+H:119:17:3:Gimel
+H:119:25:4:Daleth
+H:119:33:5:He
+H:119:41:6:Vau
+H:119:49:7:Zain
+H:119:57:8:Cheth
+H:119:65:9:Teth
+H:119:73:10:Jod
+H:119:81:11:Caph
+H:119:89:12:Lamed
+H:119:97:13:Mem
+H:119:105:14:Nun
+H:119:113:15:Samech
+H:119:121:16:Ain
+H:119:129:17:Pe
+H:119:137:18:Tzaddi
+H:119:145:19:Koph
+H:119:153:20:Resh
+H:119:161:21:Schin
+H:119:169:22:Tau
+B:Proverbs
+Z:Pr
+T3:The Proverbs
+B:Ecclesiastes
+Z:Ec
+T3:Ecclesiastes
+T4:Or, The Preacher
+B:SongOfSolomon
+Z:Song
+A:Song of Solomon
+T3:The Song Of Solomon
+B:Isaiah
+Z:Isa
+T1:The Book Of The Prophet
+T3:Isaiah
+B:Jeremiah
+Z:Jer
+T1:The Book Of The Prophet
+T3:Jeremiah
+B:Lamentations
+Z:Lam
+T3:The Lamentations
+T4:Of Jeremiah
+B:Ezekiel
+Z:Eze
+T1:The Book Of The Prophet
+T3:Ezekiel
+B:Daniel
+Z:Dan
+T3:The Book Of Daniel
+B:Hosea
+Z:Hos
+T3:Hosea
+B:Joel
+Z:Joe
+T3:Joel
+B:Amos
+Z:Am
+T3:Amos
+B:Obadiah
+Z:Ob
+T3:Obadiah
+B:Jonah
+Z:Jon
+T3:Jonah
+B:Micah
+Z:Mic
+T3:Micah
+B:Nahum
+Z:Nah
+T3:Nahum
+B:Habakkuk
+Z:Hab
+T3:Habakkuk
+B:Zephaniah
+Z:Zep
+T3:Zephaniah
+B:Haggai
+Z:Hag
+T3:Haggai
+B:Zechariah
+Z:Zec
+T3:Zechariah
+B:Malachi
+Z:Mal
+T3:Malachi
+B:Matthew
+Z:Mat
+T1:The Gospel According To
+T3:St Matthew
+B:Mark
+Z:Mr
+T1:The Gospel According To
+T3:St Mark
+B:Luke
+Z:Lu
+T1:The Gospel According To
+T3:St Luke
+B:John
+Z:Joh
+T1:The Gospel According To
+T3:St John
+B:Acts
+Z:Acts
+T1:The
+T3:Acts of the Apostles
+B:Romans
+Z:Rom
+T0:The
+T1:Epistle Of Paul The Apostle
+T2:To The
+T3:Romans
+B:Corinthians1
+Z:1Co
+A:1 Corinthians
+T1:The First Epistle
+T2:Of Paul The Apostle To The
+T3:Corinthians
+B:Corinthians2
+Z:2Co
+A:2 Corinthians
+T1:The Second Epistle
+T2:Of Paul The Apostle To The
+T3:Corinthians
+B:Galatians
+Z:Gal
+T0:The 
+T1:Epistle Of Paul The Apostle
+T2:To The
+T3:Galatians
+B:Ephesians
+Z:Eph
+T0:The
+T1:Epistle Of Paul The Apostle
+T2:To The
+T3:Ephesians
+B:Philippians
+Z:Php
+T0:The
+T1:Epistle Of Paul The Apostle
+T2:To The
+T3:Philippians
+B:Colossians
+Z:Col
+T0:The
+T1:Epistle Of Paul The Apostle
+T2:To The
+T3:Colossians
+B:Thessalonians1
+Z:1Th
+A:1 Thessalonians
+T1:The First Epistle
+T2:Of Paul The Apostle To The
+T3:Thessalonians
+B:Thessalonians2
+Z:2Th
+A:2 Thessalonians
+T1:The Second Epistle
+T2:Of Paul The Apostle To The
+T3:Thessalonians
+B:Timothy1
+Z:1Ti
+A:1 Timothy
+T1:The First Epistle
+T2:Of Paul The Apostle To
+T3:Timothy
+B:Timothy2
+Z:2Ti
+A:2 Timothy
+T1:The Second Epistle
+T2:Of Paul The Apostle To
+T3:Timothy
+B:Titus
+Z:Tit
+T1:The Epistle Of Paul To
+T3:Titus
+B:Philemon
+Z:Phi
+T1:The Epistle Of Paul To
+T3:Philemon
+B:Hebrews
+Z:Heb
+T0:The
+T1:Epistle Of Paul The Apostle
+T2:To The
+T3:Hebrews
+B:James
+Z:Jas
+T1:The General Epistle Of
+T3:James
+B:Peter1
+Z:1Pe
+A:1 Peter
+T0:The
+T1:First Epistle General Of
+T3:Peter
+B:Peter2
+Z:2Pe
+A:2 Peter
+T0:The
+T1:Second Epistle General Of
+T3:Peter
+B:John1
+Z:1Jo
+A:1 John
+T1:The First Epistle General Of
+T3:John
+B:John2
+Z:2Jo
+A:2 John
+T1:The Second Epistle of
+T3:John
+B:John3
+Z:3Jo
+A:3 John
+T1:The Third Epistle Of
+T3:John
+B:Jude
+Z:Jude
+T1:The General Epistle Of
+T3:Jude
+B:Revelation
+Z:Rev
+T3:The Revelation
+T4:Of St John The Divine
