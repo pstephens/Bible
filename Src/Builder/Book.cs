@@ -77,16 +77,11 @@ namespace Bible
 			get
 			{
 				// Assertions
-				Int32 idx = (Int32) bookId;
+				var idx = (Int32) bookId;
 				if(idx < 0 || idx > 65)
 					throw new ArgumentNullException("bookId");
 				
-				// Create new, if necessary
-				if(_books[idx] == null)
-					_books[idx] = new Book(_bible, bookId);
-				
-				// Return the book object
-				return _books[idx];
+			    return _books[idx] ?? (_books[idx] = new Book(_bible, bookId));
 			}
 		}
 		

@@ -85,7 +85,7 @@ namespace Bible
 		public void Add(Chapter chap)
 		{
 			if(chap == null)
-				throw new ArgumentNullException("verse");
+				throw new ArgumentNullException("chap");
 			
 			_data.Add(chap);
 		}

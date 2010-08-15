@@ -84,11 +84,11 @@ namespace Bible
 
 		public static Stream Parse(Stream inputData)
 		{
-			String lineBuff, key;
-			Int32 pos, lineNo = 0;
+		    String lineBuff;
+		    Int32 lineNo = 0;
 
-			MemoryStream output = new MemoryStream();
-			BinaryWriter writer = new BinaryWriter(output, Encoding.ASCII);
+		    var output = new MemoryStream();
+			var writer = new BinaryWriter(output, Encoding.ASCII);
 
 			using(TextReader reader = new StreamReader(inputData, Encoding.ASCII))
 			{
@@ -101,10 +101,10 @@ namespace Bible
 					if(lineBuff == null) break;
 
 					// Find the first colon:
-					pos = lineBuff.IndexOf(":");
+					Int32 pos = lineBuff.IndexOf(":");
 					if(pos < 0) throw new Exception("Invalid extra markup line: no colon. (" +
-									lineNo.ToString() + ")");
-					key = lineBuff.Substring(0, pos).ToUpper();
+									lineNo + ")");
+					String key = lineBuff.Substring(0, pos).ToUpper();
 					lineBuff = lineBuff.Substring(pos + 1);
 
 					// Parse each line
@@ -156,7 +156,7 @@ namespace Bible
 
 						default:
 							throw new Exception("Invalid extra markup type: unknown line type '" +
-								key + "'. (" + lineNo.ToString() + ")");
+								key + "'. (" + lineNo + ")");
 					}
 				}
 
@@ -169,7 +169,7 @@ namespace Bible
 
 		private static void ParseBook(BinaryWriter wr, String bookEnum)
 		{
-			BookName name = (BookName) Enum.Parse(typeof(BookName), bookEnum, true);
+			var name = (BookName) Enum.Parse(typeof(BookName), bookEnum, true);
 			wr.Write((Byte) ExtraMarkupType.Book);
 			wr.Write((Byte) name);
 		}
@@ -190,9 +190,9 @@ namespace Bible
 			wr.Write((Byte) elems.Length);               // second byte: number of paragraph markers
 			wr.Write(Byte.Parse(str.Substring(0, pos))); // third byte: chapter number
 			// fourth byte, etc: paragraph marker verse positions
-			for(Int32 i = 0; i < elems.Length; ++i)
+			foreach (string t in elems)
 			{
-				wr.Write(Byte.Parse(elems[i]));
+			    wr.Write(Byte.Parse(t));
 			}
 		}
 

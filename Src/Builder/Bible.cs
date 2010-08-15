@@ -10,8 +10,8 @@ namespace Bible
 		private readonly NonVerseCollection _nonVerses;
 		private Int32 _nextChapterId;
 		private Int32 _nextVerseId;
-		private Int32 _chapterCount;
-		private Int32 _verseCount;
+		private readonly Int32 _chapterCount;
+		private readonly Int32 _verseCount;
 		private Stream _bibleMarkup;
 		
 		// Properties

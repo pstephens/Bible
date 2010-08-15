@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Text;
 
 namespace Bible.File
 {
@@ -14,7 +12,7 @@ namespace Bible.File
 	public class Header
 	{
 		// File version History:
-		// 1.2.0.0 - Added separate indexes for case insensitive and 
+		// 1.2.0.0 - Added separate indexes for case sensitive and 
 		//           case insensitive words.
 
 		#region Constants
