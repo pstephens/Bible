@@ -5,9 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builder", "Builder", "{FB72
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{2015D116-DF79-4A76-B625-9D8739346651}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normalizer", "Normalizer", "{4F648B32-FAE8-413B-BE38-1559E35AB523}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normalize", "Src\Normalizer\Normalize\Normalize.csproj", "{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builders", "Builders", "{4F648B32-FAE8-413B-BE38-1559E35AB523}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normalized", "Normalized", "{6B9C72FB-AFF6-4F9D-A9CC-FE8801789132}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normalized", "Normalized", 
 		Normalized\Kjv3.txt = Normalized\Kjv3.txt
 		Normalized\Kjv4.txt = Normalized\Kjv4.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normalizer", "Src\Normalizer\Normalizer.csproj", "{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
