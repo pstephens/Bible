@@ -29,11 +29,11 @@ namespace Bible
             string tempPath = Path.Combine(Path.GetTempPath(), "BibleTemp");
             Directory.CreateDirectory(tempPath);
 
-            const string outputFile = @"..\Data\Av.bible";
+            const string outputFile = @"..\Artifacts\Binary\Av.bible";
             string outputPath = Path.GetDirectoryName(outputFile);
             Directory.CreateDirectory(outputPath);
 
-            var bible = new BibleAccum(@"..\Normalized\Kjv3.txt",
+            var bible = new BibleAccum(@"..\Artifacts\Normalized\Kjv3.txt",
                                        tempPath, outputFile);
 
             bible.Parse();

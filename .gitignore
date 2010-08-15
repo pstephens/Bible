@@ -4,3 +4,4 @@
 *ReSharper.user
 obj
 *.csproj.user
+/Artifacts

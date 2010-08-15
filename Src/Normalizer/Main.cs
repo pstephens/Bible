@@ -20,6 +20,7 @@
 // Launches normalization routines
 
 using System;
+using System.IO;
 
 namespace Normalize
 {
@@ -108,23 +109,25 @@ namespace Normalize
             OutputItalics = true;
             OutputParaMarks = false;
             OutputChapterNotes = true;
-            
+
+            Directory.CreateDirectory(@"..\Artifacts\Normalized\");
+
             // NO ITALICS, NO PRE/POST TEXT
             RootKjv1769.Parse(
                 @"input-Kjv\kjv-1769.txt",
-                @"..\Normalized\Kjv1.txt");
+                @"..\Artifacts\Normalized\Kjv1.txt");
             // ITALICS IN SQUARE BRACKETS, PRE/POST IN DOUBLE ANGLE BRACKETS
             Staggs.Parse(
                 @"input-Kjv\www.staggs.pair.com-kjbp\kjv.txt",
-                @"..\Normalized\Kjv2.txt");
+                @"..\Artifacts\Normalized\Kjv2.txt");
             // ITALICS IN SQUARE BRACKETS, PRE/POST IN SINGLE ANGLE BRACKETS
             BfOrg.Parse(
                 @"input-Kjv\www.bf.org\av-1769\",
-                @"..\Normalized\Kjv3.txt");
+                @"..\Artifacts\Normalized\Kjv3.txt");
             // NO ITALICS, NO PRE/POST TEXT
             Gutenberg.Parse(
                 @"input-Kjv\sailor.gutenberg.org\kjv10-edited.txt",
-                @"..\Normalized\Kjv4.txt");
+                @"..\Artifacts\Normalized\Kjv4.txt");
 
             return 1;
         }
