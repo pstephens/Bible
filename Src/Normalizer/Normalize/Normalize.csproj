@@ -120,9 +120,6 @@
     <Content Include="input-kjv\www.staggs.pair.com-kjbp\kjv.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BfOrg.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -141,7 +138,6 @@
     <Compile Include="Staggs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="app.config" />
     <None Include="input-kjv\kjv-1769.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
