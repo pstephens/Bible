@@ -20,6 +20,7 @@
 using System;
 using System.IO;
 using System.Text;
+using Builder;
 
 namespace Bible
 {

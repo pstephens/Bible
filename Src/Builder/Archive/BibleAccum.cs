@@ -20,6 +20,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using Builder;
 
 namespace Bible
 {
@@ -100,7 +101,7 @@ namespace Bible
 
             // Also parse the extra markup info
             using (Stream str = Assembly.GetExecutingAssembly().
-                GetManifestResourceStream("BibleMarkup.txt"))
+                GetManifestResourceStream("Builder.Archive.BibleMarkup.txt"))
             {
                 _bible.SetBibleMarkup(ParseExtraMarkup.Parse(str));
             }
@@ -109,6 +110,8 @@ namespace Bible
         public void Process()
         {
             ProcessWordIndex();
+
+            
         }
 
         public void Write()

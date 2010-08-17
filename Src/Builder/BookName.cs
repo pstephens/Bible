@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 /* Copyright 2009-2010 Peter Stephens
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,7 @@
  */
 #endregion
 
-namespace Bible
+namespace Builder
 {
     public enum BookName
     {

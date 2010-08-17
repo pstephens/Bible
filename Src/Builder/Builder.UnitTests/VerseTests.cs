@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,37 +17,23 @@
 
 #endregion
 
-using System;
+using NUnit.Framework;
 
-namespace Builder
+namespace Builder.UnitTests
 {
-    public class Verse : IVerse
+    [TestFixture]
+    public class VerseTests
     {
-        public Verse(string verseData)
+        [Test]
+        public void Verse_Text_should_return_text()
         {
-            Text = verseData;
-        }
+            const string text = "Some verse data.";
+            
+            var verse = new Verse(text) as IVerse;
 
-        public T GetService<T>() where T : IVerseService
-        {
-            throw new NotImplementedException();
-        }
+            Assert.That(verse.Text, Is.EqualTo(text));
 
-        public string Text { get; private set; }
 
-        public IChapter Chapter
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int Index
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int Id
-        {
-            get { throw new NotImplementedException(); }
         }
     }
 }

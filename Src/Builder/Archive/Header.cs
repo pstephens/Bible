@@ -31,11 +31,12 @@ namespace Bible.File
     public class Header
     {
         // File version History:
+        // 1.3.0.0 - Changed verse data encoding. Removed Word Pos Index
         // 1.2.0.0 - Added separate indexes for case sensitive and 
         //           case insensitive words.
 
         #region Constants
-        public const String FILE_ID = "AvBible 1.2.0.0 "; // 16 Bytes
+        public const String FILE_ID = "AvBible 1.3.0.0 "; // 16 Bytes
         public const Int32 HEADER_SIZE = 136;
         public const Int32 WORD_INDEX_ROW_SIZE = 3; // WordSize : Byte, VerseRefs : Short
         public const Int32 WORD_INDEX_REV_ROW_SIZE = 2; // Index into WORD_INDEX : Short

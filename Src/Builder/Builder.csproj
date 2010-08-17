@@ -19,7 +19,7 @@
     </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>BuildBible</AssemblyName>
+    <AssemblyName>Builder</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -27,8 +27,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Exe</OutputType>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace>Builder</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
@@ -104,45 +103,52 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bible.cs">
+    <Compile Include="Archive\Bible.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BibleAccum.cs">
+    <Compile Include="Archive\BibleAccum.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Book.cs">
+    <Compile Include="Archive\Book.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BookNames.cs">
+    <Compile Include="Archive\Chapter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chapter.cs">
+    <Compile Include="Archive\ExtraMarkup.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExtraMarkup.cs">
+    <Compile Include="Archive\Header.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Header.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ItalicPosIndex.cs" />
+    <Compile Include="Archive\ItalicPosIndex.cs" />
+    <Compile Include="BookName.cs" />
+    <Compile Include="IBible.cs" />
+    <Compile Include="IBibleService.cs" />
+    <Compile Include="IBook.cs" />
+    <Compile Include="IBookService.cs" />
+    <Compile Include="IChapter.cs" />
+    <Compile Include="IChapterService.cs" />
+    <Compile Include="IVerse.cs" />
+    <Compile Include="IVerseService.cs" />
     <Compile Include="Main.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NonVerse.cs">
+    <Compile Include="Archive\NonVerse.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Verse.cs">
+    <Compile Include="Archive\Verse.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WordIndex.cs">
+    <Compile Include="Archive\WordIndex.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WordPosIndex.cs" />
-    <Compile Include="WriteBible.cs">
+    <Compile Include="Archive\WordPosIndex.cs" />
+    <Compile Include="Archive\WriteBible.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="BibleMarkup.txt" />
+    <Compile Include="Verse.cs" />
+    <EmbeddedResource Include="Archive\BibleMarkup.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
