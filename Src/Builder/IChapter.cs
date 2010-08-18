@@ -21,9 +21,8 @@ using System.Collections.Generic;
 
 namespace Builder
 {
-    public interface IChapter
+    public interface IChapter : IServiceProvider<IChapter>
     {
-        T GetService<T>() where T : IChapterService;
         IBook Book { get; }
         int Index { get; }
         int Id { get; }

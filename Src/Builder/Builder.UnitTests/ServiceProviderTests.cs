@@ -18,31 +18,36 @@
 #endregion
 
 using System;
+using NUnit.Framework;
 
-namespace Builder
+namespace Builder.UnitTests
 {
-    public class Verse : ServiceProvider<IVerse>, IVerse
+    [TestFixture]
+    public class ServiceProviderTests
     {
-        public Verse(string verseData)
+        [Test]
+        public void GetService_should_create_instance_of_FooService()
         {
-            Text = verseData;
-        }
+            var related = new Foo();
 
-        public string Text { get; private set; }
+            var foo = related.GetService<FooService>();
 
-        public IChapter Chapter
-        {
-            get { throw new NotImplementedException(); }
+            Assert.That(foo, Is.InstanceOf(typeof (FooService)));
         }
+    }
 
-        public int Index
-        {
-            get { throw new NotImplementedException(); }
-        }
+    public class Foo : ServiceProvider<IFoo>, IFoo 
+    {
+        public string SomeData { get; set; }
+    }
 
-        public int Id
-        {
-            get { throw new NotImplementedException(); }
-        }
+    public interface IFoo
+    {
+        string SomeData { get; set; }
+    }
+
+    public class FooService : IService<IFoo>
+    {
+        public IFoo Related { get; set; }
     }
 }

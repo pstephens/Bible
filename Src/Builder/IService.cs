@@ -19,8 +19,8 @@
 
 namespace Builder
 {
-    public interface IBibleService
+    public interface IService<T>
     {
-        IBible RelatedBible { get; set; }
+        T Related { get; set; }
     }
 }

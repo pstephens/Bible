@@ -19,9 +19,8 @@
 
 namespace Builder
 {
-    public interface IVerse
+    public interface IVerse : IServiceProvider<IVerse>
     {
-        T GetService<T>() where T : IVerseService;
         string Text { get; }
         IChapter Chapter { get; }
         int Index { get; }

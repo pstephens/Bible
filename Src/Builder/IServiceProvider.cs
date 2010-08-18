@@ -1,4 +1,4 @@
-﻿#region Copyright Notice
+#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -19,8 +19,8 @@
 
 namespace Builder
 {
-    public interface IChapterService
+    public interface IServiceProvider<TRelated>
     {
-        IChapter RelatedChapter { get; set; }
+        T GetService<T>() where T : IService<TRelated>, new();
     }
 }

@@ -124,13 +124,11 @@
     <Compile Include="Archive\ItalicPosIndex.cs" />
     <Compile Include="BookName.cs" />
     <Compile Include="IBible.cs" />
-    <Compile Include="IBibleService.cs" />
     <Compile Include="IBook.cs" />
-    <Compile Include="IBookService.cs" />
     <Compile Include="IChapter.cs" />
-    <Compile Include="IChapterService.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="IServiceProvider.cs" />
     <Compile Include="IVerse.cs" />
-    <Compile Include="IVerseService.cs" />
     <Compile Include="Main.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -147,6 +145,7 @@
     <Compile Include="Archive\WriteBible.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ServiceProvider.cs" />
     <Compile Include="Verse.cs" />
     <EmbeddedResource Include="Archive\BibleMarkup.txt" />
   </ItemGroup>

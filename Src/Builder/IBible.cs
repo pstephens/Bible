@@ -21,9 +21,8 @@ using System.Collections.Generic;
 
 namespace Builder
 {
-    public interface IBible
+    public interface IBible : IServiceProvider<IBible>
     {
-        T GetService<T>() where T : IBibleService;
         IList<IBook> Books { get; }
     }
 }
