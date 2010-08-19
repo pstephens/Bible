@@ -1,13 +1,25 @@
 using System;
+using System.Collections.Generic;
 
 namespace Builder
 {
-    public abstract class ServiceProvider<TRelated> : IServiceProvider<TRelated>
+    public abstract class ServiceProvider<TRelated> : IServiceProvider<TRelated> where TRelated : class
     {
-        public T GetService<T>() where T : IService<TRelated>, new()
+        private readonly Dictionary<Type, IService<TRelated>> services =
+            new Dictionary<Type, IService<TRelated>>();
+
+        public T GetService<T>() where T : class, IService<TRelated>, new()
         {
-            var service = new T();
-            return service;
+            IService<TRelated> service;
+            if (!services.TryGetValue(typeof(T), out service))
+            {
+                service = new T {Related = this as TRelated};
+                if(service.Related == null)
+                    throw new InvalidOperationException("ServiceProvider (Related) must implement TRelated.");
+                services.Add(typeof (T), service);
+            }
+
+            return (T) service;
         }
     }
 }

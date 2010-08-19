@@ -32,8 +32,16 @@ namespace Builder.UnitTests
             var verse = new Verse(text) as IVerse;
 
             Assert.That(verse.Text, Is.EqualTo(text));
+        }
 
+        [Test]
+        public void Verse_Chapter_should_return_injected_Chapter()
+        {
+            IChapter chapter = null; //  MockRepository.GenerateStub<IChapter>();
 
+            var verse = new Verse("Content") as IVerse;
+
+            Assert.That(verse.Chapter, Is.SameAs(chapter));
         }
     }
 }

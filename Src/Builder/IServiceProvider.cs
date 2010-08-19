@@ -19,8 +19,8 @@
 
 namespace Builder
 {
-    public interface IServiceProvider<TRelated>
+    public interface IServiceProvider<TRelated> where TRelated : class
     {
-        T GetService<T>() where T : IService<TRelated>, new();
+        T GetService<T>() where T : class, IService<TRelated>, new();
     }
 }

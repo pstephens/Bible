@@ -30,15 +30,48 @@ namespace Builder.UnitTests
         {
             var related = new Foo();
 
-            var foo = related.GetService<FooService>();
+            var fooService = related.GetService<FooService>();
 
-            Assert.That(foo, Is.InstanceOf(typeof (FooService)));
+            Assert.That(fooService, Is.InstanceOf(typeof (FooService)));
+        }
+
+        [Test]
+        public void GetService_should_return_same_instance_of_FooService_when_called_twice()
+        {
+            var related = new Foo();
+
+            var fooService1 = related.GetService<FooService>();
+            var fooService2 = related.GetService<FooService>();
+
+            Assert.That(fooService1, Is.SameAs(fooService2));
+        }
+
+        [Test]
+        public void GetService_should_set_Related_property_to_Foo_on_service()
+        {
+            var related = new Foo();
+
+            var fooService = related.GetService<FooService>();
+
+            Assert.That(fooService.Related, Is.EqualTo(related));
+        }
+
+        [Test]
+        public void GetService_when_related_doesnt_implement_proper_interface_should_throw()
+        {
+            var related = new Foo2();
+
+            Assert.Throws<InvalidOperationException>(() => related.GetService<FooService>());
         }
     }
 
     public class Foo : ServiceProvider<IFoo>, IFoo 
     {
         public string SomeData { get; set; }
+    }
+
+    public class Foo2 : ServiceProvider<IFoo>
+    {
     }
 
     public interface IFoo
