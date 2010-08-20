@@ -122,6 +122,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Archive\ItalicPosIndex.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="BookName.cs" />
     <Compile Include="IBible.cs" />
     <Compile Include="IBook.cs" />

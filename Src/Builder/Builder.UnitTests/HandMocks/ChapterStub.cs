@@ -14,27 +14,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-
 #endregion
 
-namespace Builder
+using System;
+using System.Collections.Generic;
+
+namespace Builder.UnitTests.HandMocks
 {
-    public class Verse : ServiceProvider<IVerse>, IVerse
+    public class ChapterStub : IChapter
     {
-        public Verse(string verseData, IChapter chapter, int id, int index)
+        private object service;
+
+        public T GetService<T>() where T : class, IService<IChapter>, new()
         {
-            Text = verseData;
-            Chapter = chapter;
-            Index = index;
-            Id = id;
+            return (T) service;
         }
 
-        public string Text { get; private set; }
+        public void SetService<T>(T svc)
+        {
+            service = svc;
+        }
 
-        public IChapter Chapter { get; private set; }
-
-        public int Index { get; private set; }
-
-        public int Id { get; private set; }
+        public IBook Book { get; set; }
+        public int Index { get; set; }
+        public int Id { get; set; }
+        public IList<IVerse> Verses { get; set; }
     }
 }

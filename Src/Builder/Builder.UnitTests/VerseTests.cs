@@ -17,6 +17,7 @@
 
 #endregion
 
+using Builder.UnitTests.HandMocks;
 using NUnit.Framework;
 
 namespace Builder.UnitTests
@@ -24,12 +25,18 @@ namespace Builder.UnitTests
     [TestFixture]
     public class VerseTests
     {
+        private static IVerse CreateVerseUnderTest(string verseData = "Content", 
+            IChapter chapter = null, int id = 0, int index = 0)
+        {
+            return new Verse(verseData, chapter ?? new ChapterStub(), id, index);
+        }
+
         [Test]
         public void Verse_Text_should_return_text()
         {
             const string text = "Some verse data.";
             
-            var verse = new Verse(text) as IVerse;
+            var verse = CreateVerseUnderTest(text);
 
             Assert.That(verse.Text, Is.EqualTo(text));
         }
@@ -37,11 +44,27 @@ namespace Builder.UnitTests
         [Test]
         public void Verse_Chapter_should_return_injected_Chapter()
         {
-            IChapter chapter = null; //  MockRepository.GenerateStub<IChapter>();
+            IChapter ch = new ChapterStub();
 
-            var verse = new Verse("Content") as IVerse;
+            var verse = CreateVerseUnderTest(chapter: ch);
 
-            Assert.That(verse.Chapter, Is.SameAs(chapter));
+            Assert.That(verse.Chapter, Is.SameAs(ch));
+        }
+
+        [Test]
+        public void Verse_Id_should_return_injected_Id()
+        {
+            var verse = CreateVerseUnderTest(id: 25);
+
+            Assert.That(verse.Id, Is.EqualTo(25));
+        }
+
+        [Test]
+        public void Verse_Index_should_return_injected_Index()
+        {
+            var verse = CreateVerseUnderTest(index: 15);
+
+            Assert.That(verse.Index, Is.EqualTo(15));
         }
     }
 }
