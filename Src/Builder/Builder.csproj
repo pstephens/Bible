@@ -123,7 +123,9 @@
     </Compile>
     <Compile Include="Archive\ItalicPosIndex.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Book.cs" />
     <Compile Include="BookName.cs" />
+    <Compile Include="Chapter.cs" />
     <Compile Include="IBible.cs" />
     <Compile Include="IBook.cs" />
     <Compile Include="IChapter.cs" />
@@ -147,6 +149,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ServiceProvider.cs" />
+    <Compile Include="ValidatingList.cs" />
     <Compile Include="Verse.cs" />
     <EmbeddedResource Include="Archive\BibleMarkup.txt" />
   </ItemGroup>

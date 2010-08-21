@@ -17,6 +17,7 @@
 
 #endregion
 
+using System;
 using Builder.UnitTests.HandMocks;
 using NUnit.Framework;
 
@@ -41,6 +42,13 @@ namespace Builder.UnitTests
             Assert.That(verse.Text, Is.EqualTo(text));
         }
 
+        [TestCase(null)]
+        [TestCase("")]
+        public void Verse_Text_with_null_or_empty_should_throw(string text)
+        {
+            Assert.Throws<ArgumentNullException>(() => CreateVerseUnderTest(text));
+        }
+
         [Test]
         public void Verse_Chapter_should_return_injected_Chapter()
         {
@@ -52,6 +60,12 @@ namespace Builder.UnitTests
         }
 
         [Test]
+        public void Verse_Chapter_with_null_should_throw()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Verse("Data", null, 0, 0));
+        }
+
+        [Test]
         public void Verse_Id_should_return_injected_Id()
         {
             var verse = CreateVerseUnderTest(id: 25);
@@ -60,11 +74,25 @@ namespace Builder.UnitTests
         }
 
         [Test]
+        public void Verse_Id_with_less_than_zero_should_throw()
+        {
+            Assert.Throws<ArgumentException>(
+                () => CreateVerseUnderTest(id: -1));
+        }
+
+        [Test]
         public void Verse_Index_should_return_injected_Index()
         {
             var verse = CreateVerseUnderTest(index: 15);
 
             Assert.That(verse.Index, Is.EqualTo(15));
+        }
+
+        [Test]
+        public void Verse_Index_with_less_than_zero_should_throw()
+        {
+            Assert.Throws<ArgumentException>(
+                () => CreateVerseUnderTest(index: -1));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿#region Copyright Notice
+#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,14 +17,13 @@
 
 #endregion
 
-using System.Collections.Generic;
-
-namespace Builder
+namespace Builder.UnitTests.HandMocks
 {
-    public interface IBook : IServiceProvider<IBook>
+    public class VerseStub : ServiceStub<IVerse>, IVerse
     {
-        IBible Bible { get; }
-        BookName Id { get; }
-        IList<IChapter> Chapters { get; }
+        public string Text { get; set; }
+        public IChapter Chapter { get; set; }
+        public int Index { get; set; }
+        public int Id { get; set; }
     }
 }

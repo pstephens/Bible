@@ -18,30 +18,30 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 
 namespace Builder
 {
-    public class Verse : ServiceProvider<IVerse>, IVerse
+    public class Chapter : ServiceProvider<IChapter>, IChapter
     {
-        public Verse(string verseData, IChapter chapter, int id, int index)
+        public Chapter(IBook book, int id, int index)
         {
-            if(string.IsNullOrEmpty(verseData)) throw new ArgumentNullException("verseData");
-            if(chapter == null) throw new ArgumentNullException("chapter");
-            if(id < 0) throw new ArgumentException("Must be greater than zero.", "id");
-            if (index < 0) throw new ArgumentException("Must be greater than zero.", "index");
+            if(book == null) throw new ArgumentNullException("book");
+            if (id < 0) throw new ArgumentException("Must be zero or greater.", "id");
+            if(index < 0) throw new ArgumentException("Must be zero or greater.", "index");
 
-            Text = verseData;
-            Chapter = chapter;
-            Index = index;
+            Book = book;
             Id = id;
+            Index = index;
+            Verses = new ValidatingList<IVerse>(verse => verse != null);
         }
 
-        public string Text { get; private set; }
-
-        public IChapter Chapter { get; private set; }
+        public IBook Book { get; private set; }
 
         public int Index { get; private set; }
 
         public int Id { get; private set; }
+
+        public IList<IVerse> Verses { get; private set; }
     }
 }

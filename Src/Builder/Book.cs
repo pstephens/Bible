@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -20,13 +20,23 @@
 using System;
 using System.Collections.Generic;
 
-namespace Builder.UnitTests.HandMocks
+namespace Builder
 {
-    public class BookStub : ServiceStub<IBook>, IBook
+    public class Book : ServiceProvider<IBook>, IBook
     {
-        public IBible Bible { get; set; }
-        public int Index { get; set; }
-        public int Id { get; set; }
-        public IList<IChapter> Chapters { get; set; }
+        public Book(IBible bible, BookName id)
+        {
+            if(bible == null) throw new ArgumentNullException("bible");
+
+            Bible = bible;
+            Id = id;
+            Chapters = new ValidatingList<IChapter>(ch => ch != null);
+        }
+
+        public IBible Bible { get; private set; }
+
+        public BookName Id { get; private set; }
+
+        public IList<IChapter> Chapters { get; private set; }
     }
 }
