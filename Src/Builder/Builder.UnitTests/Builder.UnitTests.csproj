@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HandMocks\BibleStub.cs" />
+    <Compile Include="HandMocks\BookStub.cs" />
     <Compile Include="HandMocks\ChapterStub.cs" />
+    <Compile Include="HandMocks\ServiceStub.cs" />
     <Compile Include="ServiceProviderTests.cs" />
     <Compile Include="VerseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

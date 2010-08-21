@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
+
 #endregion
 
 using System;
@@ -21,11 +22,8 @@ using System.Collections.Generic;
 
 namespace Builder.UnitTests.HandMocks
 {
-    public class ChapterStub : ServiceStub<IChapter>, IChapter
+    public class BibleStub : ServiceStub<IBible>, IBible
     {
-        public IBook Book { get; set; }
-        public int Index { get; set; }
-        public int Id { get; set; }
-        public IList<IVerse> Verses { get; set; }
+        public IList<IBook> Books { get; set; }
     }
 }

@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
+
 #endregion
 
 using System;
@@ -21,11 +22,18 @@ using System.Collections.Generic;
 
 namespace Builder.UnitTests.HandMocks
 {
-    public class ChapterStub : ServiceStub<IChapter>, IChapter
+    public class ServiceStub<TRelated>
     {
-        public IBook Book { get; set; }
-        public int Index { get; set; }
-        public int Id { get; set; }
-        public IList<IVerse> Verses { get; set; }
+        private readonly Dictionary<Type, object> services = new Dictionary<Type, object>();
+
+        public void SetService<T>(T svc)
+        {
+            services[typeof (T)] = svc;
+        }
+
+        public T GetService<T>() where T : class, IService<TRelated>, new()
+        {
+            return (T) services[typeof(T)];
+        }
     }
 }
