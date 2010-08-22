@@ -17,14 +17,14 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
 namespace Builder
 {
-    public interface IChapter : IServiceProvider<IChapter>
+    public interface IChapter : IServiceProvider<IChapter>, IEquatable<IChapter>
     {
         IBook Book { get; }
-        int Index { get; }
         int Id { get; }
         IList<IVerse> Verses { get; }
     }

@@ -23,16 +23,14 @@ namespace Builder
 {
     public class Verse : ServiceProvider<IVerse>, IVerse
     {
-        public Verse(string verseData, IChapter chapter, int id, int index)
+        public Verse(string verseData, IChapter chapter, int id)
         {
             if(string.IsNullOrEmpty(verseData)) throw new ArgumentNullException("verseData");
             if(chapter == null) throw new ArgumentNullException("chapter");
             if(id < 0) throw new ArgumentException("Must be greater than zero.", "id");
-            if (index < 0) throw new ArgumentException("Must be greater than zero.", "index");
 
             Text = verseData;
             Chapter = chapter;
-            Index = index;
             Id = id;
         }
 
@@ -40,8 +38,22 @@ namespace Builder
 
         public IChapter Chapter { get; private set; }
 
-        public int Index { get; private set; }
-
         public int Id { get; private set; }
+
+        public bool Equals(IVerse other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return other.Id == Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IVerse);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }

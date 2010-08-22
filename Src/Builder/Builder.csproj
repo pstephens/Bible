@@ -149,6 +149,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ServiceProvider.cs" />
+    <Compile Include="ValidatingDictionary.cs" />
     <Compile Include="ValidatingList.cs" />
     <Compile Include="Verse.cs" />
     <EmbeddedResource Include="Archive\BibleMarkup.txt" />

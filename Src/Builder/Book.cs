@@ -38,5 +38,21 @@ namespace Builder
         public BookName Id { get; private set; }
 
         public IList<IChapter> Chapters { get; private set; }
+        
+        public bool Equals(IBook other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IBook);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

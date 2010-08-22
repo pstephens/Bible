@@ -6,3 +6,5 @@ obj
 *.csproj.user
 /Artifacts
 /Coverage
+/Bible2.VisualState.xml
+/TestResult.xml

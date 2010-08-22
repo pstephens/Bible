@@ -85,5 +85,51 @@ namespace Builder.UnitTests
             Assert.Throws<ArgumentException>(
                 () => book.Chapters.Add(null));
         }
+
+        [TestCase(BookName.Samuel1, BookName.Samuel2, Result = false)]
+        [TestCase(BookName.Titus, BookName.Titus, Result = true)]
+        public bool Exercise_Equals(BookName id1, BookName id2)
+        {
+            var book1 = CreateBookUnderTest(id: id1);
+            var book2 = CreateBookUnderTest(id: id2);
+
+            return book1.Equals(book2);
+        }
+
+        [TestCase(BookName.Samuel1, BookName.Samuel2, Result=false)]
+        [TestCase(BookName.Titus, BookName.Titus, Result=true)]
+        public bool Exercise_EqualsObject(BookName id1, BookName id2)
+        {
+            object book1 = CreateBookUnderTest(id: id1);
+            object book2 = CreateBookUnderTest(id: id2);
+
+            return book1.Equals(book2);
+        }
+
+        [TestCase(BookName.Samuel1, BookName.Samuel2, Result=false)]
+        [TestCase(BookName.Titus, BookName.Titus, Result=true)]
+        public bool Exercise_GetHashCode(BookName id1, BookName id2)
+        {
+            var book1 = CreateBookUnderTest(id: id1);
+            var book2 = CreateBookUnderTest(id: id2);
+
+            return book1.GetHashCode() == book2.GetHashCode();
+        }
+
+        [Test]
+        public void Equals_with_null_should_return_false()
+        {
+            var book = CreateBookUnderTest(id: BookName.Zechariah);
+
+            Assert.That(book.Equals(null), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void EqualsObject_with_non_book_should_return_false()
+        {
+            object book = CreateBookUnderTest(id: BookName.Genesis);
+
+            Assert.That(book.Equals("not_a_book"), Is.False);
+        }
     }
 }

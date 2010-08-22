@@ -10,6 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artifacts", "Artifacts", "{FB2792FC-B709-4637-9047-30C72F0DD5AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normalized", "Normalized", "{83DB2B13-9C18-4770-975C-1A16709885FA}"
+	ProjectSection(SolutionItems) = preProject
+		Artifacts\Normalized\Kjv1.txt = Artifacts\Normalized\Kjv1.txt
+		Artifacts\Normalized\Kjv2.txt = Artifacts\Normalized\Kjv2.txt
+		Artifacts\Normalized\Kjv3.txt = Artifacts\Normalized\Kjv3.txt
+		Artifacts\Normalized\Kjv4.txt = Artifacts\Normalized\Kjv4.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binary", "Binary", "{ABE7BC15-3C9E-4865-9FF2-CD8D241F418B}"
 EndProject
@@ -20,6 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{07014A59
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder.UnitTests", "Src\Builder.UnitTests\Builder.UnitTests.csproj", "{D51AAE4C-24B6-4639-908A-C2A2A85F388C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoverageAndTesting", "CoverageAndTesting", "{EED20E57-542A-41B4-9195-97797E4AB4CD}"
+	ProjectSection(SolutionItems) = preProject
+		Coverage\Bible2.ncproj = Coverage\Bible2.ncproj
+		Bible2.nunit = Bible2.nunit
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

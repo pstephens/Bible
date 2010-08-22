@@ -24,8 +24,23 @@ namespace Builder.UnitTests.HandMocks
     public class ChapterStub : ServiceStub<IChapter>, IChapter
     {
         public IBook Book { get; set; }
-        public int Index { get; set; }
         public int Id { get; set; }
         public IList<IVerse> Verses { get; set; }
+        
+        public bool Equals(IChapter other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IVerse);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }

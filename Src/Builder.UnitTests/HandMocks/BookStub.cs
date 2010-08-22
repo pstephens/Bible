@@ -27,5 +27,20 @@ namespace Builder.UnitTests.HandMocks
         public IBible Bible { get; set; }
         public BookName Id { get; set; }
         public IList<IChapter> Chapters { get; set; }
+        public bool Equals(IBook other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IBook);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

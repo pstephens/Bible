@@ -17,11 +17,12 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
 namespace Builder
 {
-    public interface IBook : IServiceProvider<IBook>
+    public interface IBook : IServiceProvider<IBook>, IEquatable<IBook>
     {
         IBible Bible { get; }
         BookName Id { get; }

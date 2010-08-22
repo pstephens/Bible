@@ -52,6 +52,7 @@
     <Compile Include="HandMocks\ServiceStub.cs" />
     <Compile Include="HandMocks\VerseStub.cs" />
     <Compile Include="ServiceProviderTests.cs" />
+    <Compile Include="ValidatingDictionaryTests.cs" />
     <Compile Include="ValidatingListTests.cs" />
     <Compile Include="VerseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

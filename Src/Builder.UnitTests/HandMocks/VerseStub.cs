@@ -17,13 +17,30 @@
 
 #endregion
 
+using System;
+
 namespace Builder.UnitTests.HandMocks
 {
     public class VerseStub : ServiceStub<IVerse>, IVerse
     {
         public string Text { get; set; }
         public IChapter Chapter { get; set; }
-        public int Index { get; set; }
         public int Id { get; set; }
+
+        public bool Equals(IVerse other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return other.Id == Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IVerse);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }

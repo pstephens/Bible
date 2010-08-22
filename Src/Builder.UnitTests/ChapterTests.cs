@@ -28,9 +28,9 @@ namespace Builder.UnitTests
     public class ChapterTests
     {
         private static Chapter CreateChapterUnderTest(BookStub book = null, 
-                                                      int id = 0, int index = 0)
+                                                      int id = 0)
         {
-            return new Chapter(book ?? new BookStub(), id, index);
+            return new Chapter(book ?? new BookStub(), id);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Builder.UnitTests
         public void Book_with_null_should_throw()
         {
             Assert.Throws<ArgumentNullException>(
-                () => new Chapter(null, 0, 0));
+                () => new Chapter(null, 0));
         }
 
         [Test]
@@ -62,21 +62,6 @@ namespace Builder.UnitTests
         {
             Assert.Throws<ArgumentException>(
                 () => CreateChapterUnderTest(id: -1));
-        }
-
-        [Test]
-        public void Index_should_return_injected_index()
-        {
-            var chapter = CreateChapterUnderTest(index: 15);
-
-            Assert.That(chapter.Index, Is.EqualTo(15));
-        }
-
-        [Test]
-        public void Index_with_negative_should_throw()
-        {
-            Assert.Throws<ArgumentException>(
-                () => CreateChapterUnderTest(index: -1));
         }
 
         [Test]
@@ -109,6 +94,55 @@ namespace Builder.UnitTests
             var chapter = CreateChapterUnderTest();
 
             Assert.Throws<ArgumentException>(() => chapter.Verses.Add(null));
+        }
+
+        [TestCase(5, 5, Result = true)]
+        [TestCase(5, 7, Result = false)]
+        public bool Exercise_GetHashCode(int id1, int id2)
+        {
+            var chap1 = CreateChapterUnderTest(id: id1);
+            var chap2 = CreateChapterUnderTest(id: id2);
+
+            var hash1 = chap1.GetHashCode();
+            var hash2 = chap2.GetHashCode();
+
+            return hash1 == hash2;
+        }
+
+        [TestCase(5, 5, Result = true)]
+        [TestCase(5, 7, Result = false)]
+        public bool Exercise_Equals(int id1, int id2)
+        {
+            var chap1 = CreateChapterUnderTest(id: id1);
+            var chap2 = CreateChapterUnderTest(id: id2);
+
+            return chap1.Equals(chap2);
+        }
+
+        [TestCase(5, 5, Result=true)]
+        [TestCase(5, 7, Result=false)]
+        public bool Exercise_EqualsObject(int id1, int id2)
+        {
+            object chap1 = CreateChapterUnderTest(id: id1);
+            object chap2 = CreateChapterUnderTest(id: id2);
+
+            return chap1.Equals(chap2);
+        }
+
+        [Test]
+        public void Equals_with_null_should_return_false()
+        {
+            var chap = CreateChapterUnderTest(id: 5);
+
+            Assert.That(chap.Equals(null), Is.False);
+        }
+
+        [Test]
+        public void EqualsObject_with_not_a_chapter_should_return_false()
+        {
+            object chap = CreateChapterUnderTest(id: 5);
+
+            Assert.That(chap.Equals("not_a_chapter"), Is.False);
         }
     }
 }

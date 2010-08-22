@@ -24,24 +24,36 @@ namespace Builder
 {
     public class Chapter : ServiceProvider<IChapter>, IChapter
     {
-        public Chapter(IBook book, int id, int index)
+        public Chapter(IBook book, int id)
         {
             if(book == null) throw new ArgumentNullException("book");
             if (id < 0) throw new ArgumentException("Must be zero or greater.", "id");
-            if(index < 0) throw new ArgumentException("Must be zero or greater.", "index");
 
             Book = book;
             Id = id;
-            Index = index;
             Verses = new ValidatingList<IVerse>(verse => verse != null);
         }
 
         public IBook Book { get; private set; }
 
-        public int Index { get; private set; }
-
         public int Id { get; private set; }
 
         public IList<IVerse> Verses { get; private set; }
+        
+        public bool Equals(IChapter other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as IChapter);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }

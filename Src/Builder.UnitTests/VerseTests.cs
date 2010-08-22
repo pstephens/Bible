@@ -27,9 +27,9 @@ namespace Builder.UnitTests
     public class VerseTests
     {
         private static IVerse CreateVerseUnderTest(string verseData = "Content", 
-            IChapter chapter = null, int id = 0, int index = 0)
+            IChapter chapter = null, int id = 0)
         {
-            return new Verse(verseData, chapter ?? new ChapterStub(), id, index);
+            return new Verse(verseData, chapter ?? new ChapterStub(), id);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace Builder.UnitTests
         [Test]
         public void Verse_Chapter_with_null_should_throw()
         {
-            Assert.Throws<ArgumentNullException>(() => new Verse("Data", null, 0, 0));
+            Assert.Throws<ArgumentNullException>(() => new Verse("Data", null, 0));
         }
 
         [Test]
@@ -80,19 +80,53 @@ namespace Builder.UnitTests
                 () => CreateVerseUnderTest(id: -1));
         }
 
-        [Test]
-        public void Verse_Index_should_return_injected_Index()
+        [TestCase(5, 6, Result = false)]
+        [TestCase(5, 5, Result = true)]
+        public bool Exercise_GetHashCode(int id1, int id2)
         {
-            var verse = CreateVerseUnderTest(index: 15);
+            var verse1 = CreateVerseUnderTest(id: id1);
+            var verse2 = CreateVerseUnderTest(id: id2);
 
-            Assert.That(verse.Index, Is.EqualTo(15));
+            var hash1 = verse1.GetHashCode();
+            var hash2 = verse2.GetHashCode();
+
+            return hash1 == hash2;
+        }
+
+        [TestCase(5, 7, Result = false)]
+        [TestCase(5, 5, Result = true)]
+        public bool Exercise_Equals(int id1, int id2)
+        {
+            var verse1 = CreateVerseUnderTest(id: id1);
+            var verse2 = CreateVerseUnderTest(id: id2);
+
+            return verse1.Equals(verse2);
+        }
+
+        [TestCase(5, 7, Result = false)]
+        [TestCase(5, 5, Result = true)]
+        public bool Exercise_EqualsObject(int id1, int id2)
+        {
+            object verse1 = CreateVerseUnderTest(id: id1);
+            object verse2 = CreateVerseUnderTest(id: id2);
+
+            return verse1.Equals(verse2);
         }
 
         [Test]
-        public void Verse_Index_with_less_than_zero_should_throw()
+        public void Equals_to_null_IVerse_should_be_false()
         {
-            Assert.Throws<ArgumentException>(
-                () => CreateVerseUnderTest(index: -1));
+            var verse = CreateVerseUnderTest(id: 5);
+
+            Assert.That(verse.Equals(null), Is.False);
+        }
+
+        [Test]
+        public void EqualsObject_to_wrong_type_should_be_false()
+        {
+            object verse = CreateVerseUnderTest(id: 5);
+
+            Assert.That(verse.Equals("not_a_verse"), Is.False);
         }
     }
 }

@@ -17,13 +17,15 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+
 namespace Builder
 {
-    public interface IVerse : IServiceProvider<IVerse>
+    public interface IVerse : IServiceProvider<IVerse>, IEquatable<IVerse>
     {
         string Text { get; }
         IChapter Chapter { get; }
-        int Index { get; }
         int Id { get; }
     }
 }
