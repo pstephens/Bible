@@ -6,22 +6,29 @@ namespace Builder
 {
     public class ValidatingDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
-        private Dictionary<TKey, TValue> InnerDictionary { get; set; }
+        private IDictionary<TKey, TValue> InnerDictionary { get; set; }
         private Predicate<TValue> Validator { get; set; }
 
         public ValidatingDictionary(Predicate<TValue> validator, 
-            IDictionary<TKey, TValue> dictionary = null,
+            IEnumerable<KeyValuePair<TKey, TValue>> dictionary = null,
             IEqualityComparer<TKey> comparer = null)
         {
             Validator = validator;
             InnerDictionary = new Dictionary<TKey, TValue>(
                 comparer ?? EqualityComparer<TKey>.Default);
-            // TODO: populate from source if available.
+            
+            if (dictionary == null) return;
+
+            foreach (var val in dictionary)
+            {
+                Validate(val.Value);
+                InnerDictionary.Add(val.Key, val.Value);
+            }
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return InnerDictionary.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -31,22 +38,22 @@ namespace Builder
 
         public void Add(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            Add(item.Key, item.Value);
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            InnerDictionary.Clear();
         }
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            return InnerDictionary.Contains(item);
         }
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            InnerDictionary.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
@@ -56,7 +63,7 @@ namespace Builder
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return InnerDictionary.Count; }
         }
 
         public bool IsReadOnly
@@ -66,7 +73,7 @@ namespace Builder
 
         public bool ContainsKey(TKey key)
         {
-            throw new NotImplementedException();
+            return InnerDictionary.ContainsKey(key);
         }
 
         public void Add(TKey key, TValue value)
@@ -75,15 +82,9 @@ namespace Builder
             InnerDictionary.Add(key, value);
         }
 
-        private void Validate(TValue value)
-        {
-            if(!Validator(value))
-                throw new ArgumentException("Invalid value.", "value");
-        }
-
         public bool Remove(TKey key)
         {
-            throw new NotImplementedException();
+            return InnerDictionary.Remove(key);
         }
 
         public bool TryGetValue(TKey key, out TValue value)
@@ -93,18 +94,28 @@ namespace Builder
 
         public TValue this[TKey key]
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return InnerDictionary[key]; }
+            set
+            {
+                Validate(value);
+                InnerDictionary[key] = value;
+            }
         }
 
         public ICollection<TKey> Keys
         {
-            get { throw new NotImplementedException(); }
+            get { return InnerDictionary.Keys; }
         }
 
         public ICollection<TValue> Values
         {
             get { return InnerDictionary.Values; }
+        }
+
+        private void Validate(TValue value)
+        {
+            if(!Validator(value))
+                throw new ArgumentException("Invalid value.", "value");
         }
     }
 }
