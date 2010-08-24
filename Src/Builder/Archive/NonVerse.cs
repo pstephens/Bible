@@ -23,7 +23,7 @@ using System;
 using System.Collections;
 using System.IO;
 
-namespace Bible
+namespace Builder.Archive
 {
     public abstract class NonVerse
     {

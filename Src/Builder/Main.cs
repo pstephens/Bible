@@ -19,9 +19,9 @@
 
 using System;
 using System.IO;
-using Builder;
+using Builder.Archive;
 
-namespace Bible
+namespace Builder
 {
     internal class MainClass
     {
@@ -47,7 +47,7 @@ namespace Bible
             Console.ReadLine();
         }
 
-        public static void DisplayStats(Bible bible, WordIndex idx)
+        public static void DisplayStats(Builder.Archive.Bible bible, WordIndex idx)
         {
             // Calc some stats
             Int32 minVerseRef = -1,
@@ -60,7 +60,7 @@ namespace Bible
                   maxVerseSize = -1;
             for (Int32 i = 0; i < bible.Books.Count; ++i)
             {
-                Book b = bible.Books[(BookName) i];
+                Book b = bible.Books[(Builder.Model.BookName) i];
                 if (minChapCount == -1 || minChapCount > b.Chapters.Count)
                     minChapCount = b.Chapters.Count;
                 if (maxChapCount == -1 || maxChapCount < b.Chapters.Count)

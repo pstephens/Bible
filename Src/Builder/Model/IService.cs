@@ -17,12 +17,10 @@
 
 #endregion
 
-using System.Collections.Generic;
-
-namespace Builder
+namespace Builder.Model
 {
-    public interface IBible : IServiceProvider<IBible>
+    public interface IService<T>
     {
-        IList<IBook> Books { get; }
+        T Related { get; set; }
     }
 }

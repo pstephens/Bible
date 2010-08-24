@@ -21,10 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Bible.File;
-using Builder;
+using Builder.Model;
 
-namespace Bible
+namespace Builder.Archive
 {
     public class BibleWriter
     {

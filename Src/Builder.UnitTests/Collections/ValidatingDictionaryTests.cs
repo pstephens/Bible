@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Builder.UnitTests
+namespace Builder.UnitTests.Collections
 {
     [TestFixture]
     public class ValidatingDictionaryTests
@@ -163,7 +163,7 @@ namespace Builder.UnitTests
             var dict = CreateTwoItemDictionary();
 
             Assert.Throws<KeyNotFoundException>(
-                () => { var val = dict[101]; });
+                () => Assert.That(dict[101], Is.EqualTo(null)));
         }
 
         [Test]
@@ -190,13 +190,14 @@ namespace Builder.UnitTests
         {
             var dict = CreateTwoItemDictionary();
 
-            var items = new List<KeyValuePair<int, string>>();
+            var items = new string[2];
+            var j = 0;
             foreach (var item in dict)
             {
-                items.Add(item);
+                items[j++] = item.Value;
             }
 
-            Assert.That(items.Select(item => item.Value).ToArray(),
+            Assert.That(items,
                 Is.EquivalentTo(new[] {"35A", "35B"}));
         }
 
@@ -287,6 +288,62 @@ namespace Builder.UnitTests
             Assert.That(result, Is.False);
             Assert.That(dict.Keys.ToArray(),
                 Is.EquivalentTo(new[] {5, 10}));
+        }
+
+        [Test]
+        public void Remove_KeyValuePair_should_remove_an_item()
+        {
+            var dict = CreateTwoItemDictionary();
+
+            var result = dict.Remove(new KeyValuePair<int, string>(5, "35A"));
+
+            Assert.That(result, Is.True);
+            Assert.That(dict.Keys.ToArray(),
+                Is.EquivalentTo(new[] {10}));
+        }
+
+        [Test]
+        public void Remove_KeyValuePair_with_item_not_in_dictionary_should_not_remove_anything()
+        {
+            var dict = CreateTwoItemDictionary();
+
+            var result = dict.Remove(new KeyValuePair<int, string>(5, "35C"));
+
+            Assert.That(result, Is.False);
+            Assert.That(dict.Keys.ToArray(),
+                        Is.EquivalentTo(new[] {5, 10}));
+        }
+
+        [Test]
+        public void IsReadOnly_should_return_false()
+        {
+            var dict = CreateDictionaryUnderTest();
+
+            Assert.That(dict.IsReadOnly, Is.False);
+        }
+
+        [Test]
+        public void TryGetValue_should_return_value_in_dictionary_given_valid_key()
+        {
+            var dict = CreateTwoItemDictionary();
+
+            string val;
+            var result = dict.TryGetValue(10, out val);
+
+            Assert.That(result, Is.True);
+            Assert.That(val, Is.EqualTo("35B"));
+        }
+
+        [Test]
+        public void TryGetValue_should_not_return_value_given_invalid_key()
+        {
+            var dict = CreateTwoItemDictionary();
+
+            string val;
+            var result = dict.TryGetValue(13, out val);
+
+            Assert.That(result, Is.False);
+            Assert.That(val, Is.Null);
         }
     }
 }

@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Bible
+namespace Builder.Archive
 {
     public struct WordPos
     {

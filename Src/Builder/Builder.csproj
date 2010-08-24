@@ -123,15 +123,16 @@
     </Compile>
     <Compile Include="Archive\ItalicPosIndex.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Book.cs" />
-    <Compile Include="BookName.cs" />
-    <Compile Include="Chapter.cs" />
-    <Compile Include="IBible.cs" />
-    <Compile Include="IBook.cs" />
-    <Compile Include="IChapter.cs" />
-    <Compile Include="IService.cs" />
-    <Compile Include="IServiceProvider.cs" />
-    <Compile Include="IVerse.cs" />
+    <Compile Include="Model\Bible.cs" />
+    <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\BookName.cs" />
+    <Compile Include="Model\Chapter.cs" />
+    <Compile Include="Model\IBible.cs" />
+    <Compile Include="Model\IBook.cs" />
+    <Compile Include="Model\IChapter.cs" />
+    <Compile Include="Model\IService.cs" />
+    <Compile Include="Model\IServiceProvider.cs" />
+    <Compile Include="Model\IVerse.cs" />
     <Compile Include="Main.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -148,10 +149,10 @@
     <Compile Include="Archive\WriteBible.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ServiceProvider.cs" />
-    <Compile Include="ValidatingDictionary.cs" />
-    <Compile Include="ValidatingList.cs" />
-    <Compile Include="Verse.cs" />
+    <Compile Include="Model\ServiceProvider.cs" />
+    <Compile Include="Collections\ValidatingDictionary.cs" />
+    <Compile Include="Collections\ValidatingList.cs" />
+    <Compile Include="Model\Verse.cs" />
     <EmbeddedResource Include="Archive\BibleMarkup.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

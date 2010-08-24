@@ -58,7 +58,7 @@ namespace Builder
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            return InnerDictionary.Remove(item);
         }
 
         public int Count
@@ -68,7 +68,7 @@ namespace Builder
 
         public bool IsReadOnly
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         public bool ContainsKey(TKey key)
@@ -89,7 +89,7 @@ namespace Builder
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            throw new NotImplementedException();
+            return InnerDictionary.TryGetValue(key, out value);
         }
 
         public TValue this[TKey key]

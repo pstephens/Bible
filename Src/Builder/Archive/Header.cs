@@ -19,7 +19,7 @@
 
 using System;
 
-namespace Bible.File
+namespace Builder.Archive
 {
     public enum ChapterExtra : byte
     {

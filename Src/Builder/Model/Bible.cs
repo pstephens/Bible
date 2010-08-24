@@ -1,4 +1,4 @@
-﻿#region Copyright Notice
+#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -20,12 +20,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace Builder
+namespace Builder.Model
 {
-    public interface IVerse : IServiceProvider<IVerse>, IEquatable<IVerse>
+    public class Bible : ServiceProvider<IBible>, IBible
     {
-        string Text { get; }
-        IChapter Chapter { get; }
-        int Id { get; }
+        public Bible()
+        {
+            Books = new ValidatingDictionary<BookName, IBook>(book => book != null);
+        }
+
+        public IDictionary<BookName, IBook> Books { get; private set; }
     }
 }

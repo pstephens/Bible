@@ -1,4 +1,4 @@
-﻿#region Copyright Notice
+#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -18,41 +18,42 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 
-namespace Builder
+namespace Builder.Model
 {
-    public class Book : ServiceProvider<IBook>, IBook
+    public class Verse : ServiceProvider<IVerse>, IVerse
     {
-        public Book(IBible bible, BookName id)
+        public Verse(string verseData, IChapter chapter, int id)
         {
-            if(bible == null) throw new ArgumentNullException("bible");
+            if(string.IsNullOrEmpty(verseData)) throw new ArgumentNullException("verseData");
+            if(chapter == null) throw new ArgumentNullException("chapter");
+            if(id < 0) throw new ArgumentException("Must be greater than zero.", "id");
 
-            Bible = bible;
+            Text = verseData;
+            Chapter = chapter;
             Id = id;
-            Chapters = new ValidatingList<IChapter>(ch => ch != null);
         }
 
-        public IBible Bible { get; private set; }
+        public string Text { get; private set; }
 
-        public BookName Id { get; private set; }
+        public IChapter Chapter { get; private set; }
 
-        public IList<IChapter> Chapters { get; private set; }
-        
-        public bool Equals(IBook other)
+        public int Id { get; private set; }
+
+        public bool Equals(IVerse other)
         {
             if (ReferenceEquals(other, null)) return false;
-            return Id == other.Id;
+            return other.Id == Id;
         }
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as IBook);
+            return Equals(obj as IVerse);
         }
 
         public override int GetHashCode()
         {
-            return Id.GetHashCode();
+            return Id;
         }
     }
 }

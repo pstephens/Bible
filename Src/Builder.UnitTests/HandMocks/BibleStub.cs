@@ -19,11 +19,12 @@
 
 using System;
 using System.Collections.Generic;
+using Builder.Model;
 
 namespace Builder.UnitTests.HandMocks
 {
     public class BibleStub : ServiceStub<IBible>, IBible
     {
-        public IList<IBook> Books { get; set; }
+        public IDictionary<BookName, IBook> Books { get; set; }
     }
 }

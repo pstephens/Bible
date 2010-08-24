@@ -20,7 +20,7 @@
 using System;
 using System.Collections;
 
-namespace Bible
+namespace Builder.Archive
 {
     public class Chapter
     {

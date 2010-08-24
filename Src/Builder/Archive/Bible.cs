@@ -19,7 +19,7 @@
 using System;
 using System.IO;
 
-namespace Bible
+namespace Builder.Archive
 {
 	public class Bible
 	{

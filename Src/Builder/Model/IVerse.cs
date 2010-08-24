@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -18,30 +18,13 @@
 #endregion
 
 using System;
-using Builder.Model;
 
-namespace Builder.UnitTests.HandMocks
+namespace Builder.Model
 {
-    public class VerseStub : ServiceStub<IVerse>, IVerse
+    public interface IVerse : IServiceProvider<IVerse>, IEquatable<IVerse>
     {
-        public string Text { get; set; }
-        public IChapter Chapter { get; set; }
-        public int Id { get; set; }
-
-        public bool Equals(IVerse other)
-        {
-            if (ReferenceEquals(other, null)) return false;
-            return other.Id == Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as IVerse);
-        }
-
-        public override int GetHashCode()
-        {
-            return Id;
-        }
+        string Text { get; }
+        IChapter Chapter { get; }
+        int Id { get; }
     }
 }

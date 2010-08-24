@@ -44,17 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookTests.cs" />
-    <Compile Include="ChapterTests.cs" />
+    <Compile Include="Model\BibleTests.cs" />
+    <Compile Include="Model\BookTests.cs" />
+    <Compile Include="Model\ChapterTests.cs" />
     <Compile Include="HandMocks\BibleStub.cs" />
     <Compile Include="HandMocks\BookStub.cs" />
     <Compile Include="HandMocks\ChapterStub.cs" />
     <Compile Include="HandMocks\ServiceStub.cs" />
     <Compile Include="HandMocks\VerseStub.cs" />
-    <Compile Include="ServiceProviderTests.cs" />
-    <Compile Include="ValidatingDictionaryTests.cs" />
-    <Compile Include="ValidatingListTests.cs" />
-    <Compile Include="VerseTests.cs" />
+    <Compile Include="Model\ServiceProviderTests.cs" />
+    <Compile Include="Collections\ValidatingDictionaryTests.cs" />
+    <Compile Include="Collections\ValidatingListTests.cs" />
+    <Compile Include="Model\VerseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

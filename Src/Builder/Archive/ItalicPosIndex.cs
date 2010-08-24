@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Bible
+namespace Builder.Archive
 {
     public struct ItalicPos
     {

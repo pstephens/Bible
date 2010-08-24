@@ -20,9 +20,9 @@
 using System;
 using System.IO;
 using System.Text;
-using Builder;
+using Builder.Model;
 
-namespace Bible
+namespace Builder.Archive
 {
     public enum ExtraMarkupType : byte
     {

@@ -15,7 +15,7 @@
  */
 #endregion
 
-namespace Builder
+namespace Builder.Model
 {
     public enum BookName
     {

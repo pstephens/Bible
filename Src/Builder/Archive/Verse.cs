@@ -20,9 +20,9 @@
 using System;
 using System.Collections;
 using System.IO;
-using Builder;
+using Builder.Model;
 
-namespace Bible
+namespace Builder.Archive
 {
     public class Verse
     {

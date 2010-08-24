@@ -20,9 +20,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Builder;
+using Builder.Model;
 
-namespace Bible
+namespace Builder.Archive
 {
     public class WordIndex
     {

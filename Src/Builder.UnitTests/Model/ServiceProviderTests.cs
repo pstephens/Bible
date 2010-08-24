@@ -18,9 +18,10 @@
 #endregion
 
 using System;
+using Builder.Model;
 using NUnit.Framework;
 
-namespace Builder.UnitTests
+namespace Builder.UnitTests.Model
 {
     [TestFixture]
     public class ServiceProviderTests

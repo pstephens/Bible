@@ -18,9 +18,9 @@
 #endregion
 
 using System;
-using Builder;
+using Builder.Model;
 
-namespace Bible
+namespace Builder.Archive
 {
     public class Book
     {

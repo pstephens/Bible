@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Builder
+namespace Builder.Model
 {
     public class Chapter : ServiceProvider<IChapter>, IChapter
     {

@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,10 +17,15 @@
 
 #endregion
 
-namespace Builder
+using System;
+using System.Collections.Generic;
+
+namespace Builder.Model
 {
-    public interface IServiceProvider<TRelated> where TRelated : class
+    public interface IChapter : IServiceProvider<IChapter>, IEquatable<IChapter>
     {
-        T GetService<T>() where T : class, IService<TRelated>, new();
+        IBook Book { get; }
+        int Id { get; }
+        IList<IVerse> Verses { get; }
     }
 }

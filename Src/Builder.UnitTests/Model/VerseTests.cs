@@ -18,10 +18,11 @@
 #endregion
 
 using System;
+using Builder.Model;
 using Builder.UnitTests.HandMocks;
 using NUnit.Framework;
 
-namespace Builder.UnitTests
+namespace Builder.UnitTests.Model
 {
     [TestFixture]
     public class VerseTests

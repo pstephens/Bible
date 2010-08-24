@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Builder
+namespace Builder.Model
 {
     public interface IBook : IServiceProvider<IBook>, IEquatable<IBook>
     {

@@ -19,10 +19,11 @@
 
 using System;
 using System.Linq;
+using Builder.Model;
 using Builder.UnitTests.HandMocks;
 using NUnit.Framework;
 
-namespace Builder.UnitTests
+namespace Builder.UnitTests.Model
 {
     [TestFixture]
     public class ChapterTests

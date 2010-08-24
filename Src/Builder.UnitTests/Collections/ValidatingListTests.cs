@@ -21,7 +21,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Builder.UnitTests
+namespace Builder.UnitTests.Collections
 {
     [TestFixture]
     public class ValidatingListTests

@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using Builder.Model;
 
 namespace Builder.UnitTests.HandMocks
 {
