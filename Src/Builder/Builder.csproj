@@ -153,6 +153,10 @@
     <Compile Include="Collections\ValidatingDictionary.cs" />
     <Compile Include="Collections\ValidatingList.cs" />
     <Compile Include="Model\Verse.cs" />
+    <Compile Include="Parser\BibleParser.cs" />
+    <Compile Include="Parser\IBibleParser.cs" />
+    <Compile Include="Parser\VerseRef.cs" />
+    <Compile Include="Writer\IBibleWriter.cs" />
     <EmbeddedResource Include="Archive\BibleMarkup.txt" />
   </ItemGroup>
   <ItemGroup>
