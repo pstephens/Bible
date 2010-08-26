@@ -58,17 +58,18 @@ namespace Builder.Parser
             else if (line.StartsWith("B:"))
                 ParseBook(line);
             else
-            {
-                throw new InvalidOperationException(
-                    string.Format("Invalid input line: '{0}'", line));
-            }
+                throw ParseException("Invalid input.");
         }
 
         private void ParseBook(string line)
         {
-            var book = line.Substring(2);
+            var book = line.Substring(2).Trim();
             BookName name;
-            Enum.TryParse(book, true, out name);
+            if (!Enum.TryParse(book, true, out name))
+                throw ParseException("Invalid book name '{0}'.", book);
+
+            if (bible.Books.ContainsKey(name))
+                throw ParseException("Duplicate book names '{0}'.", book);
 
             currentBook = new Book(bible, name);
             bible.Books.Add(name, currentBook);
@@ -77,9 +78,8 @@ namespace Builder.Parser
         private void ParseVerse(string line)
         {
             var spacePos = line.IndexOf(' ');
-            if(spacePos < 0)
-                throw new InvalidOperationException(
-                    string.Format("Invalid verse line: Missing space: {0}", line));
+            if (spacePos < 0)
+                throw ParseException("Invalid verse line: missing space.");
             var verseRef = ParseVerseRef(line.Substring(0, spacePos));
             var verseData = line.Substring(spacePos + 1);
 
@@ -88,27 +88,37 @@ namespace Builder.Parser
 
         private void SetVerseData(VerseRef verseRef, string verseData)
         {
+            if (currentBook == null)
+                throw ParseException("Input file must start with a book reference.");
+
             while(currentBook.Chapters.Count < verseRef.ChapterIndex)
                 currentBook.Chapters.Add(new Chapter(currentBook, nextChapterId++));
             var curChapter = currentBook.Chapters[verseRef.ChapterIndex - 1];
 
             if(curChapter.Verses.Count != verseRef.VerseIndex - 1)
-                throw new InvalidOperationException(
-                    string.Format("Verse index out of sequence at line {0}.", currentLine));
+                throw ParseException("Verse index out of sequence.");
 
             curChapter.Verses.Add(
                 new Verse(verseData, curChapter, nextVerseId++));
         }
 
-        private static VerseRef ParseVerseRef(string verseRefString)
+        private VerseRef ParseVerseRef(string verseRefString)
         {
             var colonPos = verseRefString.IndexOf(":");
             if(colonPos < 0)
-                throw new InvalidOperationException(
-                    string.Format("Invalid verse ref: Missing colon: {0}", verseRefString));
+                throw ParseException("Invalid verse ref: Missing colon: {0}", verseRefString);
             var chapterIndex = int.Parse(verseRefString.Substring(0, colonPos));
             var verseIndex = int.Parse(verseRefString.Substring(colonPos + 1));
             return new VerseRef { ChapterIndex = chapterIndex, VerseIndex = verseIndex};
         }
+
+        private Exception ParseException(string message, params object[] parameters)
+        {
+            throw new ParseException(currentLine, 
+                                     string.Format("Line {0}: ", currentLine) +
+                                     string.Format(message, parameters));
+        }
     }
+
+
 }

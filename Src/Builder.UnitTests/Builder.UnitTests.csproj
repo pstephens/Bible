@@ -57,6 +57,7 @@
     <Compile Include="Collections\ValidatingListTests.cs" />
     <Compile Include="Model\VerseTests.cs" />
     <Compile Include="Parser\BibleParserTests.cs" />
+    <Compile Include="Parser\ParseExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

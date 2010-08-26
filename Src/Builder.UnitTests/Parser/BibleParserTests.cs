@@ -79,5 +79,91 @@ B:Genesis
 
             assert(bible);
         }
+
+        [Test]
+        public void Parse_with_no_book_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("1:1 In the beginning God created the heaven and the earth.");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_with_invalid_book_name_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:NotABookName");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_line_with_invalid_starting_chars_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("** Strange Line **");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_with_duplicate_book_names_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Genesis\r\nB:Genesis");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_with_no_data_should_return_empty_Bible()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("");
+
+            var bible = parser.Parse(stream);
+
+            Assert.That(bible.Books.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Parse_with_blank_lines_should_return_Bible()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("\r\nB:Genesis\r\n\r\n1:1 Verse 1");
+
+            var bible = parser.Parse(stream);
+
+            Assert.That(bible.Books[BookName.Genesis].Chapters[0].Verses[0].Text,
+                        Is.EqualTo("Verse 1"));
+        }
+
+        [Test]
+        public void Parse_verse_with_no_space_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Titus\r\n1:1NoSpaceHere.");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_verse_reference_must_go_in_order()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1:1 First\r\n1:3 Third?");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_verse_reference_with_no_colon_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1*1 First");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
     }
 }
