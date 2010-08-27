@@ -158,12 +158,72 @@ B:Genesis
         }
 
         [Test]
+        public void Parse_verse_reference_must_start_with_1()
+        {
+            Assert.Ignore("Todo");
+        }
+
+        [Test]
+        public void Parse_chapter_reference_must_go_in_order()
+        {
+            Assert.Ignore("Todo");
+        }
+
+        [Test]
+        public void Parse_chapter_reference_must_start_with_0()
+        {
+            Assert.Ignore("Todo");
+        }
+
+        [Test]
         public void Parse_verse_reference_with_no_colon_should_throw()
         {
             var parser = new BibleParser();
             var stream = StringToStream("B:Job\r\n1*1 First");
 
             Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_verse_reference_with_invalid_chapter_number_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1ST:1 First");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_verse_reference_with_invalid_verse_number_should_throw()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1:1ST First");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
+        }
+
+        [Test]
+        public void Parse_verse_with_internal_spaces_should_remove_spaces()
+        {
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1:1   A  verse   with   internal   spaces  removed.  ");
+
+            var bible = parser.Parse(stream);
+
+            var bibleText = bible.Books[BookName.Job].Chapters[0].Verses[0].Text;
+            Assert.That(bibleText, Is.EqualTo("A verse with internal spaces removed."));
+        }
+
+        [Test]
+        public void Parse_with_Pre_Verse_should_parse()
+        {
+            Assert.Ignore("To Do");
+        }
+
+        [Test]
+        public void Parse_with_Pose_Verse_should_parse()
+        {
+            Assert.Ignore("To Do");
         }
     }
 }

@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Builder.Model;
 
 namespace Builder.Parser
@@ -99,7 +100,14 @@ namespace Builder.Parser
                 throw ParseException("Verse index out of sequence.");
 
             curChapter.Verses.Add(
-                new Verse(verseData, curChapter, nextVerseId++));
+                new Verse(CleanupVerseData(verseData), curChapter, nextVerseId++));
+        }
+
+        private static string CleanupVerseData(string verseData)
+        {
+            return
+                Regex.Replace(verseData, "[ ][ ]+", " ")
+                    .Trim();
         }
 
         private VerseRef ParseVerseRef(string verseRefString)
@@ -107,8 +115,19 @@ namespace Builder.Parser
             var colonPos = verseRefString.IndexOf(":");
             if(colonPos < 0)
                 throw ParseException("Invalid verse ref: Missing colon: {0}", verseRefString);
-            var chapterIndex = int.Parse(verseRefString.Substring(0, colonPos));
-            var verseIndex = int.Parse(verseRefString.Substring(colonPos + 1));
+            
+            var chapterStr = verseRefString.Substring(0, colonPos);
+            int chapterIndex;
+            if(!int.TryParse(chapterStr, out chapterIndex))
+                throw ParseException("Invalid verse ref: Incorrect chapter number format: '{0}'.",
+                                     chapterStr);
+
+            var verseStr = verseRefString.Substring(colonPos + 1);
+            int verseIndex;
+            if (!int.TryParse(verseStr, out verseIndex))
+                throw ParseException("Invalid verse ref: Incorrect verse number format: '{0}'.",
+                                     verseStr);
+
             return new VerseRef { ChapterIndex = chapterIndex, VerseIndex = verseIndex};
         }
 

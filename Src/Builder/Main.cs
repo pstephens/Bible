@@ -19,35 +19,85 @@
 
 using System;
 using System.IO;
-using Builder.Archive;
+using Builder.Model;
+using Builder.Parser;
 
 namespace Builder
 {
     internal class MainClass
     {
-        public static void Main()
+        public static int Main()
         {
-            string tempPath = Path.Combine(Path.GetTempPath(), "BibleTemp");
-            Directory.CreateDirectory(tempPath);
+            IBible bible;
+            if (!ParseBible(out bible))
+                return 1;
 
-            const string outputFile = @"..\Artifacts\Binary\Av.bible";
-            string outputPath = Path.GetDirectoryName(outputFile);
-            Directory.CreateDirectory(outputPath);
 
-            var bible = new BibleAccum(@"..\Artifacts\Normalized\Kjv3.txt",
-                                       tempPath, outputFile);
 
-            bible.Parse();
-            bible.Process();
-            bible.Write();
+            //string tempPath = Path.Combine(Path.GetTempPath(), "BibleTemp");
+            //Directory.CreateDirectory(tempPath);
 
-            DisplayStats(bible.Bible, bible.WordIndex);
+            //const string outputFile = @"..\Artifacts\Binary\Av.bible";
+            //string outputPath = Path.GetDirectoryName(outputFile);
+            //Directory.CreateDirectory(outputPath);
 
-            Console.WriteLine("Press the enter key to continue...");
-            Console.ReadLine();
+            //var bible = new BibleAccum(@"..\Artifacts\Normalized\Kjv3.txt",
+            //                           tempPath, outputFile);
+
+            //bible.Parse();
+            //bible.Process();
+            //bible.Write();
+
+            //DisplayStats(bible.Bible, bible.WordIndex);
+
+            //Console.WriteLine("Press the enter key to continue...");
+            //Console.ReadLine();
+
+            return 0;
         }
 
-        public static void DisplayStats(Builder.Archive.Bible bible, WordIndex idx)
+        private static bool ParseBible(out IBible bible)
+        {
+            bible = null;
+
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length < 2)
+            {
+                ShowHelp();
+                return false;
+            }
+            var fileName = args[1];
+
+            if (!File.Exists(fileName))
+            {
+                Console.WriteLine("Input file '{0}' not found.", fileName);
+                return false;
+            }
+
+            try
+            {
+                var parser = new BibleParser();
+                using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read,
+                    FileShare.Read))
+                {
+                    bible = parser.Parse(stream);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to parse input file:");
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        private static void ShowHelp()
+        {
+            Console.WriteLine("Builder.exe <InputFileName>");
+        }
+
+        /*public static void DisplayStats(Builder.Archive.Bible bible, WordIndex idx)
         {
             // Calc some stats
             Int32 minVerseRef = -1,
@@ -132,6 +182,6 @@ namespace Builder
             Console.WriteLine("Min verses per chapter: {0}", minVerseCount);
             Console.WriteLine("Max verse length: {0}", maxVerseSize);
             Console.WriteLine("Min verse length: {0}", minVerseSize);
-        }
+        }*/
     }
 }
