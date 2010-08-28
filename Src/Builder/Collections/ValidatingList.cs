@@ -21,7 +21,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Builder
+namespace Builder.Collections
 {
     public class ValidatingList<T> : IList<T>
     {

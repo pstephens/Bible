@@ -157,22 +157,35 @@ B:Genesis
             Assert.Throws<ParseException>(() => parser.Parse(stream));
         }
 
-        [Test]
-        public void Parse_verse_reference_must_start_with_1()
+        [TestCase("-1")]
+        [TestCase("0")]
+        [TestCase("2")]
+        public void Parse_verse_reference_not_starting_with_1_must_throw(string verseNum)
         {
-            Assert.Ignore("Todo");
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1:" + verseNum + " Zeroth verse.");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
         }
 
         [Test]
         public void Parse_chapter_reference_must_go_in_order()
         {
-            Assert.Ignore("Todo");
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n1:1 First\r\n3:1 Third?");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
         }
 
-        [Test]
-        public void Parse_chapter_reference_must_start_with_0()
+        [TestCase("-1")]
+        [TestCase("0")]
+        [TestCase("2")]
+        public void Parse_chapter_reference_not_starting_with_1_must_throw(string chapterNum)
         {
-            Assert.Ignore("Todo");
+            var parser = new BibleParser();
+            var stream = StringToStream("B:Job\r\n" + chapterNum + ":1 Zeroth chapter.");
+
+            Assert.Throws<ParseException>(() => parser.Parse(stream));
         }
 
         [Test]

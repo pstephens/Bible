@@ -19,6 +19,7 @@
 
 using System;
 using System.Linq;
+using Builder.Collections;
 using NUnit.Framework;
 
 namespace Builder.UnitTests.Collections

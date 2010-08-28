@@ -92,15 +92,32 @@ namespace Builder.Parser
             if (currentBook == null)
                 throw ParseException("Input file must start with a book reference.");
 
-            while(currentBook.Chapters.Count < verseRef.ChapterIndex)
-                currentBook.Chapters.Add(new Chapter(currentBook, nextChapterId++));
-            var curChapter = currentBook.Chapters[verseRef.ChapterIndex - 1];
+            IChapter curChapter = GetCurrentChapter(verseRef);
 
             if(curChapter.Verses.Count != verseRef.VerseIndex - 1)
                 throw ParseException("Verse index out of sequence.");
 
             curChapter.Verses.Add(
                 new Verse(CleanupVerseData(verseData), curChapter, nextVerseId++));
+        }
+
+        private IChapter GetCurrentChapter(VerseRef verseRef)
+        {
+            IChapter curChapter;
+            if (verseRef.ChapterIndex == currentBook.Chapters.Count)
+            {
+                curChapter = currentBook.Chapters[verseRef.ChapterIndex - 1];
+            }
+            else if (verseRef.ChapterIndex == currentBook.Chapters.Count + 1)
+            {
+                curChapter = new Chapter(currentBook, nextChapterId++);
+                currentBook.Chapters.Add(curChapter);
+            }
+            else
+            {
+                throw ParseException("Chapter index must be sequential.");
+            }
+            return curChapter;
         }
 
         private static string CleanupVerseData(string verseData)
@@ -121,6 +138,9 @@ namespace Builder.Parser
             if(!int.TryParse(chapterStr, out chapterIndex))
                 throw ParseException("Invalid verse ref: Incorrect chapter number format: '{0}'.",
                                      chapterStr);
+
+            if (chapterIndex < 1)
+                throw ParseException("The chapter index must be >= 1.");
 
             var verseStr = verseRefString.Substring(colonPos + 1);
             int verseIndex;
