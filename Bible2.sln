@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binary", "Binary", "{ABE7BC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{07014A59-DB49-4034-899E-7D7051A6FAB2}"
 	ProjectSection(SolutionItems) = preProject
+		Build.ps1 = Build.ps1
 		LICENSE.TXT = LICENSE.TXT
 		README.TXT = README.TXT
 	EndProjectSection
