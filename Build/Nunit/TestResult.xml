@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\src\bible2\bible2.nunit" total="127" errors="0" failures="0" not-run="2" inconclusive="0" ignored="2" skipped="0" invalid="0" date="2010-09-02" time="22:11:47">
+  <environment nunit-version="2.5.7.10213" clr-version="4.0.30319.1" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\src\bible2\build\nunit" machine-name="GREEN" user="Peter Stephens" user-domain="Green" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Project" name="C:\src\bible2\bible2.nunit" executed="True" result="Success" success="True" time="0.577" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\src\bible2\Bin\Builder.UnitTests.dll" executed="True" result="Success" success="True" time="0.546" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Builder" executed="True" result="Success" success="True" time="0.522" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="UnitTests" executed="True" result="Success" success="True" time="0.516" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Collections" executed="True" result="Success" success="True" time="0.159" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="ValidatingDictionaryTests" executed="True" result="Success" success="True" time="0.115" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Add_2_items_should_retain_two_items" executed="True" result="Success" success="True" time="0.033" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Add_2_items_should_retain_two_items_v2" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Add_invalid_item_should_throw" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Add_invalid_item_should_throw_v2" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Add_multiple_invalid_items_should_throw" executed="True" result="Success" success="True" time="0.010" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Add_multiple_items_should_retain_items" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Clear_should_remove_all_items" executed="True" result="Success" success="True" time="0.005" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Contains_with_invalid_KVP_should_return_false" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Contains_with_valid_KVP_should_return_true" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.ContainsKey_with_invalid_key_should_return_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.ContainsKey_with_valid_key_should_return_true" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.CopyTo_should_copy_values" executed="True" result="Success" success="True" time="0.013" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Count_should_return_item_count" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Get_indexer_should_return_value" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Get_indexer_using_invalid_key_should_throw" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.GetEnumerator_should_return_list_of_items" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.IsReadOnly_should_return_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Keys_collection_should_be_read_only" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Keys_collection_should_return_keys" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Remove_KeyValuePair_should_remove_an_item" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Remove_KeyValuePair_with_item_not_in_dictionary_should_not_remove_anything" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Remove_should_remove_an_item" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Remove_with_invalid_item_should_not_remove_anything" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Set_indexer_should_store_value" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Set_indexer_with_invalid_value_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.TryGetValue_should_not_return_value_given_invalid_key" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.TryGetValue_should_return_value_in_dictionary_given_valid_key" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Values_collection_should_be_read_only" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingDictionaryTests.Values_collection_should_return_values" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="ValidatingListTests" executed="True" result="Success" success="True" time="0.036" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Add_12_should_throw" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Clear_should_remove_items" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Constructor_with_invalid_items_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Constructor_with_items_should_prepopulate_list" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.CopyTo_with_3_items_should_copy_3_items" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Count_with_3_items_should_return_3" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Exercise_Contains" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_Contains(6)" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_Contains(3)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_Contains(5)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_IndexOf" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_IndexOf(7)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_IndexOf(5)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_IndexOf(10)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_Remove" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_Remove(6,True)" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                              <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Exercise_Remove(10,False)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.GetEnumerator_should_enumerate_through_items" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Insert_3_at_0_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Insert_6_at_0_should_insert_new_item" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.IsReadOnly_should_return_false" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.RemoveAt_2_should_remove_7" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Setting_index_0_to_2_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Setting_index_0_to_5_should_set" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Collections.ValidatingListTests.Should_be_able_to_Add_8" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite type="Namespace" name="Model" executed="True" result="Success" success="True" time="0.124" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="BibleTests" executed="True" result="Success" success="True" time="0.021" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Model.BibleTests.Adding_null_value_to_Books_collection_should_throw" executed="True" result="Success" success="True" time="0.011" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BibleTests.Books_collection_should_allow_setting_an_item" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BibleTests.Setting_null_value_into_Books_collection_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="BookTests" executed="True" result="Success" success="True" time="0.036" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Model.BookTests.Bible_should_return_injected_Bible" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BookTests.Book_with_null_bible_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BookTests.Chapters_Add_null_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BookTests.Chapters_should_return_chapter_objects_added_to_collection" executed="True" result="Success" success="True" time="0.008" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BookTests.Chapters_should_return_IList_on_new_Book" executed="True" result="Success" success="True" time="0.008" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BookTests.Equals_with_null_should_return_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.BookTests.EqualsObject_with_non_book_should_return_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Exercise_Equals" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.BookTests.Exercise_Equals(Samuel1,Samuel2)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.BookTests.Exercise_Equals(Titus,Titus)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_EqualsObject" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.BookTests.Exercise_EqualsObject(Titus,Titus)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.BookTests.Exercise_EqualsObject(Samuel1,Samuel2)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_GetHashCode" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.BookTests.Exercise_GetHashCode(Samuel1,Samuel2)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.BookTests.Exercise_GetHashCode(Titus,Titus)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Builder.UnitTests.Model.BookTests.Id_should_return_injected_id" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="ChapterTests" executed="True" result="Success" success="True" time="0.025" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Book_should_return_injected_Book" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Book_with_null_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Equals_with_null_should_return_false" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.EqualsObject_with_not_a_chapter_should_return_false" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Exercise_Equals" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.ChapterTests.Exercise_Equals(5,5)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.ChapterTests.Exercise_Equals(5,7)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_EqualsObject" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.ChapterTests.Exercise_EqualsObject(5,5)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.ChapterTests.Exercise_EqualsObject(5,7)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_GetHashCode" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.ChapterTests.Exercise_GetHashCode(5,5)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.ChapterTests.Exercise_GetHashCode(5,7)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Id_should_return_injected_id" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Id_with_negative_should_throw" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Should_be_able_to_Add_to_the_Verses_collection" executed="True" result="Success" success="True" time="0.006" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Verses_Add_with_null_IVerse_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ChapterTests.Verses_should_not_be_null_on_new_Chapter" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="ServiceProviderTests" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Model.ServiceProviderTests.GetService_should_create_instance_of_FooService" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ServiceProviderTests.GetService_should_return_same_instance_of_FooService_when_called_twice" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ServiceProviderTests.GetService_should_set_Related_property_to_Foo_on_service" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.ServiceProviderTests.GetService_when_related_doesnt_implement_proper_interface_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="VerseTests" executed="True" result="Success" success="True" time="0.020" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Model.VerseTests.Equals_to_null_IVerse_should_be_false" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.VerseTests.EqualsObject_to_wrong_type_should_be_false" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Exercise_Equals" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Exercise_Equals(5,5)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Exercise_Equals(5,7)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_EqualsObject" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Exercise_EqualsObject(5,5)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Exercise_EqualsObject(5,7)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="ParameterizedTest" name="Exercise_GetHashCode" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Exercise_GetHashCode(5,6)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Exercise_GetHashCode(5,5)" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Chapter_should_return_injected_Chapter" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Chapter_with_null_should_throw" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Id_should_return_injected_Id" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Id_with_less_than_zero_should_throw" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Text_should_return_text" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Verse_Text_with_null_or_empty_should_throw" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Text_with_null_or_empty_should_throw(null)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Builder.UnitTests.Model.VerseTests.Verse_Text_with_null_or_empty_should_throw(&quot;&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite type="Namespace" name="Parser" executed="True" result="Success" success="True" time="0.194" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="BibleParserTests" executed="True" result="Success" success="True" time="0.183" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_chapter_reference_must_go_in_order" executed="True" result="Success" success="True" time="0.104" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Parse_chapter_reference_not_starting_with_1_must_throw" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_chapter_reference_not_starting_with_1_must_throw(&quot;0&quot;)" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                              <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_chapter_reference_not_starting_with_1_must_throw(&quot;-1&quot;)" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                              <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_chapter_reference_not_starting_with_1_must_throw(&quot;2&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_line_with_invalid_starting_chars_should_throw" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_of_TestData_should_have_one_book_Genesis" executed="True" result="Success" success="True" time="0.032" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_of_TestData_should_have_one_chapter" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_of_TestData_should_have_one_verse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_of_TestData_should_have_verse_content_of_Gen1_1" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_must_go_in_order" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="Parse_verse_reference_not_starting_with_1_must_throw" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                            <results>
+                              <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_not_starting_with_1_must_throw(&quot;-1&quot;)" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                              <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_not_starting_with_1_must_throw(&quot;0&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_not_starting_with_1_must_throw(&quot;2&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_with_invalid_chapter_number_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_with_invalid_verse_number_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_reference_with_no_colon_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_with_internal_spaces_should_remove_spaces" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_verse_with_no_space_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_blank_lines_should_return_Bible" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_duplicate_book_names_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_invalid_book_name_should_throw" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_no_book_should_throw" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_no_data_should_return_empty_Bible" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_Pose_Verse_should_parse" executed="False" result="Ignored">
+                            <reason>
+                              <message><![CDATA[To Do]]></message>
+                            </reason>
+                          </test-case>
+                          <test-case name="Builder.UnitTests.Parser.BibleParserTests.Parse_with_Pre_Verse_should_parse" executed="False" result="Ignored">
+                            <reason>
+                              <message><![CDATA[To Do]]></message>
+                            </reason>
+                          </test-case>
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="ParseExceptionTests" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                        <results>
+                          <test-case name="Builder.UnitTests.Parser.ParseExceptionTests.Test_constructor" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Builder.UnitTests.Parser.ParseExceptionTests.Test_serialization" executed="True" result="Success" success="True" time="0.003" asserts="3" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
