@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Clean;Build;UnitTests" ToolsVersion="4.0">
+
+	<Target Name="Clean">
+		<MSBuild Targets="Clean"
+		         BuildInParallel="true"
+		         Projects="..\Bible2.sln"
+		         StopOnFirstFailure="true"
+		         ToolsVersion="4.0"/>
+		         
+	</Target>
+
+	<Target Name="Build">
+		<MSBuild Targets="Build"
+		         BuildInParallel="true"
+		         Projects="..\Bible2.sln"
+		         StopOnFirstFailure="true"
+		         ToolsVersion="4.0"/>
+
+	</Target>
+
+	<Target Name="Rebuild"
+	        DependsOnTargets="Clean;Build">
+	</Target>
+
+	<Target Name="UnitTests">
+		<MakeDir Directories="..\Artifacts\BuildLogs\" />
+		<Exec Command=".\nunit\nunit-console.exe ../Bible2.nunit /xml:..\Artifacts\BuildLogs\TestResult.xml" />
+	</Target>
+
+
+</Project>
