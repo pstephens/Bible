@@ -23,7 +23,7 @@ namespace Builder.Model
 {
     public class Verse : ServiceProvider<IVerse>, IVerse
     {
-        public Verse(string verseData, IChapter chapter, int id)
+        public Verse(string verseData, IChapter chapter, int id, VerseFlags flags)
         {
             if(string.IsNullOrEmpty(verseData)) throw new ArgumentNullException("verseData");
             if(chapter == null) throw new ArgumentNullException("chapter");
@@ -32,13 +32,26 @@ namespace Builder.Model
             Text = verseData;
             Chapter = chapter;
             Id = id;
+            Flags = flags;
         }
+
+        private VerseFlags Flags { get; set; }
 
         public string Text { get; private set; }
 
         public IChapter Chapter { get; private set; }
 
         public int Id { get; private set; }
+
+        public bool IsPreVerse
+        {
+            get { return (Flags & VerseFlags.VerseTypeMask) == VerseFlags.PreVerseData; }
+        }
+
+        public bool IsPostVerse
+        {
+            get { return (Flags & VerseFlags.VerseTypeMask) == VerseFlags.PostVerseData; }
+        }
 
         public bool Equals(IVerse other)
         {

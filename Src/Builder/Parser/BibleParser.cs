@@ -58,6 +58,10 @@ namespace Builder.Parser
                 ParseVerse(line);
             else if (line.StartsWith("B:"))
                 ParseBook(line);
+            else if (line.StartsWith("Pre "))
+                ParsePreVerse(line);
+            else if (line.StartsWith("Post:"))
+                ParsePostVerse(line);
             else
                 throw ParseException("Invalid input.");
         }
@@ -76,6 +80,71 @@ namespace Builder.Parser
             bible.Books.Add(name, currentBook);
         }
 
+        private void ParsePreVerse(string line)
+        {
+            var spacePos = line.IndexOf(' ');
+            var colonPos = line.IndexOf(':');
+            var numberCharLength = colonPos - spacePos - 1;
+
+            if (spacePos < 0 || colonPos < 0 || numberCharLength < 0)
+                throw ParseException("Invalid chapter ref format.");
+
+            var chapter = ParseChapterRef(line.Substring(spacePos + 1, numberCharLength));
+            var verseData = line.Substring(colonPos + 1);
+
+            SetPreVerseData(chapter, verseData);
+        }
+
+        private VerseRef ParseChapterRef(string chapterRefString)
+        {
+            int chapter;
+            if(!int.TryParse(chapterRefString, out chapter))
+                throw ParseException("Incorrect chapter number format.");
+            if (chapter < 1)
+                throw ParseException("Chapter reference must be >= 1.");
+            return new VerseRef { ChapterIndex = chapter, VerseIndex = 0};
+        }
+
+        private void SetPreVerseData(VerseRef chapterRef, string verseData)
+        {
+            if (currentBook == null)
+                throw ParseException("Input file must start with a book reference.");
+
+            var chapter = GetCurrentChapter(chapterRef);
+            if (chapter.Verses.Count > 0)
+                throw ParseException("Pre-verse data must be the first verse in the chapter.");
+
+            chapter.Verses.Add(
+                new Verse(CleanupVerseData(verseData), chapter, nextVerseId++, 
+                    VerseFlags.PreVerseData));
+        }
+
+        private void ParsePostVerse(string line)
+        {
+            SetPostVerse(CleanupVerseData(line.Substring("Post:".Length)));
+        }
+
+        private void SetPostVerse(string verseData)
+        {
+            if (currentBook == null)
+                throw ParseException("Input file must start with a book reference.");
+
+            if(currentBook.Chapters.Count <= 0)
+                throw ParseException("Current book must already contain a chapter.");
+
+            var chapter = currentBook.Chapters[currentBook.Chapters.Count - 1];
+            if (HasPostVerseData(chapter))
+                throw ParseException("Only one post-verse is allowed per chapter.");
+
+            chapter.Verses.Add(
+                new Verse(verseData, chapter, nextVerseId++, VerseFlags.PostVerseData));
+        }
+
+        private static bool HasPostVerseData(IChapter chapter)
+        {
+            return chapter.Verses.Count > 0 && chapter.Verses[chapter.Verses.Count - 1].IsPostVerse;
+        }
+
         private void ParseVerse(string line)
         {
             var spacePos = line.IndexOf(' ');
@@ -92,13 +161,23 @@ namespace Builder.Parser
             if (currentBook == null)
                 throw ParseException("Input file must start with a book reference.");
 
-            IChapter curChapter = GetCurrentChapter(verseRef);
+            var curChapter = GetCurrentChapter(verseRef);
 
-            if(curChapter.Verses.Count != verseRef.VerseIndex - 1)
+            var expectedCount = verseRef.VerseIndex + (HasPreVerseData(curChapter) ? 0 : -1);
+
+            if(curChapter.Verses.Count != expectedCount)
                 throw ParseException("Verse index out of sequence.");
 
+            if (HasPostVerseData(curChapter))
+                throw ParseException("Verse data must not come after post data.");
+
             curChapter.Verses.Add(
-                new Verse(CleanupVerseData(verseData), curChapter, nextVerseId++));
+                new Verse(CleanupVerseData(verseData), curChapter, nextVerseId++, VerseFlags.Normal));
+        }
+
+        private static bool HasPreVerseData(IChapter chapter)
+        {
+            return chapter.Verses.Count > 0 && chapter.Verses[0].IsPreVerse;
         }
 
         private IChapter GetCurrentChapter(VerseRef verseRef)

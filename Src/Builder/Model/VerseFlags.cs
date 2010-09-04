@@ -1,4 +1,4 @@
-﻿#region Copyright Notice
+#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -21,12 +21,12 @@ using System;
 
 namespace Builder.Model
 {
-    public interface IVerse : IServiceProvider<IVerse>, IEquatable<IVerse>
+    [Flags]
+    public enum VerseFlags : byte
     {
-        string Text { get; }
-        IChapter Chapter { get; }
-        int Id { get; }
-        bool IsPreVerse { get; }
-        bool IsPostVerse { get; }
+        Normal        = 0x00,
+        PreVerseData  = 0x01,
+        PostVerseData = 0x02,
+        VerseTypeMask = 0x03
     }
 }

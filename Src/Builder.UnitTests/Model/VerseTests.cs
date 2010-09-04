@@ -28,9 +28,9 @@ namespace Builder.UnitTests.Model
     public class VerseTests
     {
         private static IVerse CreateVerseUnderTest(string verseData = "Content", 
-            IChapter chapter = null, int id = 0)
+            IChapter chapter = null, int id = 0, VerseFlags flags = VerseFlags.Normal)
         {
-            return new Verse(verseData, chapter ?? new ChapterStub(), id);
+            return new Verse(verseData, chapter ?? new ChapterStub(), id, flags);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Builder.UnitTests.Model
         [Test]
         public void Verse_Chapter_with_null_should_throw()
         {
-            Assert.Throws<ArgumentNullException>(() => new Verse("Data", null, 0));
+            Assert.Throws<ArgumentNullException>(() => new Verse("Data", null, 0, VerseFlags.Normal));
         }
 
         [Test]
@@ -128,6 +128,24 @@ namespace Builder.UnitTests.Model
             object verse = CreateVerseUnderTest(id: 5);
 
             Assert.That(verse.Equals("not_a_verse"), Is.False);
+        }
+
+        [TestCase(VerseFlags.Normal, Result=false)]
+        [TestCase(VerseFlags.PreVerseData, Result=true)]
+        [TestCase(VerseFlags.PostVerseData, Result=false)]
+        public bool Exercise_IsPreVerse(VerseFlags flags)
+        {
+            var verse = CreateVerseUnderTest(flags: flags);
+            return verse.IsPreVerse;
+        }
+
+        [TestCase(VerseFlags.Normal, Result = false)]
+        [TestCase(VerseFlags.PostVerseData, Result = true)]
+        [TestCase(VerseFlags.PreVerseData, Result = false)]
+        public bool Exercise_IsPostVerse(VerseFlags flags)
+        {
+            var verse = CreateVerseUnderTest(flags: flags);
+            return verse.IsPostVerse;
         }
     }
 }

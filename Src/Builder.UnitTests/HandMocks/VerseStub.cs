@@ -27,6 +27,8 @@ namespace Builder.UnitTests.HandMocks
         public string Text { get; set; }
         public IChapter Chapter { get; set; }
         public int Id { get; set; }
+        public bool IsPreVerse { get; set; }
+        public bool IsPostVerse { get; set; }
 
         public bool Equals(IVerse other)
         {
