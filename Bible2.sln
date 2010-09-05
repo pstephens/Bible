@@ -34,6 +34,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoverageAndTesting", "Cover
 		Bible2.nunit = Bible2.nunit
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BibleLib", "BibleLib", "{11829B32-4816-430F-BA16-E950AE9CF8CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleLib", "Src\BibleLib\BibleLib.csproj", "{DC016D01-5CC2-46BE-B355-FB452A5491A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,10 @@ Global
 		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +70,6 @@ Global
 		{D51AAE4C-24B6-4639-908A-C2A2A85F388C} = {4F648B32-FAE8-413B-BE38-1559E35AB523}
 		{83DB2B13-9C18-4770-975C-1A16709885FA} = {FB2792FC-B709-4637-9047-30C72F0DD5AC}
 		{ABE7BC15-3C9E-4865-9FF2-CD8D241F418B} = {FB2792FC-B709-4637-9047-30C72F0DD5AC}
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8} = {11829B32-4816-430F-BA16-E950AE9CF8CA}
 	EndGlobalSection
 EndGlobal

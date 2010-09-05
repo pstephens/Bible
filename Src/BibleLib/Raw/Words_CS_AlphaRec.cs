@@ -17,14 +17,10 @@
 
 #endregion
 
-using System.Collections.Generic;
-using System.IO;
-using Builder.Model;
-
-namespace Builder.Writer
+namespace BibleLib.Raw
 {
-    public interface IBibleWriter
+    public struct Words_CS_AlphaRec
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        
     }
 }

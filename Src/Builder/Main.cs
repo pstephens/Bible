@@ -32,7 +32,7 @@ namespace Builder
             if (!ParseBible(out bible))
                 return 1;
 
-
+            
 
             //string tempPath = Path.Combine(Path.GetTempPath(), "BibleTemp");
             //Directory.CreateDirectory(tempPath);

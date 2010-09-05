@@ -17,14 +17,12 @@
 
 #endregion
 
-using System.Collections.Generic;
-using System.IO;
 using Builder.Model;
 
-namespace Builder.Writer
+namespace Builder.Services
 {
-    public interface IBibleWriter
+    public class WordsCaseInsensitive : IService<IBible>
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        public IBible Related { get; set; }
     }
 }

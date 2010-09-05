@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Archive\ItalicPosIndex.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ChunkedMemoryStream.cs" />
     <Compile Include="Model\Bible.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookName.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Archive\WriteBible.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\NavigationExtensionMethods.cs" />
     <Compile Include="Model\ServiceProvider.cs" />
     <Compile Include="Collections\ValidatingDictionary.cs" />
     <Compile Include="Collections\ValidatingList.cs" />
@@ -158,6 +160,9 @@
     <Compile Include="Parser\IBibleParser.cs" />
     <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Parser\VerseRef.cs" />
+    <Compile Include="Services\WordsCaseInsensitive.cs" />
+    <Compile Include="Writer\IBibleTableData.cs" />
+    <Compile Include="Writer\IBibleTableWriter.cs" />
     <Compile Include="Writer\IBibleWriter.cs" />
     <EmbeddedResource Include="Archive\BibleMarkup.txt" />
   </ItemGroup>
@@ -183,7 +188,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BibleLib\BibleLib.csproj">
+      <Project>{DC016D01-5CC2-46BE-B355-FB452A5491A8}</Project>
+      <Name>BibleLib %28BibleLib\BibleLib%29</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

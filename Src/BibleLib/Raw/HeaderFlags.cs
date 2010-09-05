@@ -17,14 +17,14 @@
 
 #endregion
 
-using System.Collections.Generic;
-using System.IO;
-using Builder.Model;
+using System;
 
-namespace Builder.Writer
+namespace BibleLib.Raw
 {
-    public interface IBibleWriter
+    [Flags]
+    public enum HeaderFlags
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        None = 0,
+        GZipCompressed = 1
     }
 }

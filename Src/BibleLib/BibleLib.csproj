@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D51AAE4C-24B6-4639-908A-C2A2A85F388C}</ProjectGuid>
+    <ProjectGuid>{DC016D01-5CC2-46BE-B355-FB452A5491A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Builder.UnitTests</RootNamespace>
-    <AssemblyName>Builder.UnitTests</AssemblyName>
+    <RootNamespace>BibleLib</RootNamespace>
+    <AssemblyName>BibleLib</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
-    <Reference Include="Rhino.Mocks">
-      <HintPath>..\..\..\Libraries\Rhino.Mocks.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,28 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\BibleTests.cs" />
-    <Compile Include="Model\BookTests.cs" />
-    <Compile Include="Model\ChapterTests.cs" />
-    <Compile Include="HandMocks\BibleStub.cs" />
-    <Compile Include="HandMocks\BookStub.cs" />
-    <Compile Include="HandMocks\ChapterStub.cs" />
-    <Compile Include="HandMocks\ServiceStub.cs" />
-    <Compile Include="HandMocks\VerseStub.cs" />
-    <Compile Include="Model\NavigationExtensionMethodsTests.cs" />
-    <Compile Include="Model\ServiceProviderTests.cs" />
-    <Compile Include="Collections\ValidatingDictionaryTests.cs" />
-    <Compile Include="Collections\ValidatingListTests.cs" />
-    <Compile Include="Model\VerseTests.cs" />
-    <Compile Include="Parser\BibleParserTests.cs" />
-    <Compile Include="Parser\ParseExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Builder\Builder.csproj">
-      <Project>{CC9922D2-CD8F-4968-A46A-4282432045F8}</Project>
-      <Name>Builder</Name>
-    </ProjectReference>
+    <Compile Include="Raw\BibleTableId.cs" />
+    <Compile Include="Raw\HeaderRec.cs" />
+    <Compile Include="Raw\HeaderFlags.cs" />
+    <Compile Include="Raw\Words_CS_AlphaRec.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

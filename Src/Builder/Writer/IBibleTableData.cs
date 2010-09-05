@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,14 +17,14 @@
 
 #endregion
 
-using System.Collections.Generic;
 using System.IO;
-using Builder.Model;
+using BibleLib.Raw;
 
 namespace Builder.Writer
 {
-    public interface IBibleWriter
+    public interface IBibleTableData
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        HeaderFlags Flags { get; }
+        Stream DataStream { get; }
     }
 }
