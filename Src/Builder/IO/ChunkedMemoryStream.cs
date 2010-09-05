@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -19,7 +19,7 @@
 using System;
 using System.IO;
 
-namespace Builder
+namespace Builder.IO
 {
     public class ChunkedMemoryStream : Stream
     {

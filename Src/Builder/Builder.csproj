@@ -123,7 +123,7 @@
     </Compile>
     <Compile Include="Archive\ItalicPosIndex.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ChunkedMemoryStream.cs" />
+    <Compile Include="IO\ChunkedMemoryStream.cs" />
     <Compile Include="Model\Bible.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BookName.cs" />

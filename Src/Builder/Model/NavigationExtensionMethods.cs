@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Builder.Model
 {
@@ -29,22 +30,11 @@ namespace Builder.Model
             if(bible == null)
                 throw new ArgumentNullException("bible");
 
-            for (var i = 0; i < 66; ++i)
-            {
-                IBook book;
-                if(!bible.Books.TryGetValue((BookName)i, out book))
-                    continue;
+            var allBooks = bible.Books.Values.OrderBy(book => book.Id);
+            var allChapters = allBooks.SelectMany(book => book.Chapters);
+            var allVerses = allChapters.SelectMany(chapter => chapter.Verses);
 
-                for (var j = 0; j < book.Chapters.Count; ++j)
-                {
-                    var chapter = book.Chapters[j];
-
-                    for (var k = 0; k < chapter.Verses.Count; ++k)
-                    {
-                        yield return chapter.Verses[k];
-                    }
-                }
-            }
+            return allVerses;
         }
     }
 }
