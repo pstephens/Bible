@@ -160,7 +160,9 @@
     <Compile Include="Parser\IBibleParser.cs" />
     <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Parser\VerseRef.cs" />
-    <Compile Include="Services\WordsCaseInsensitive.cs" />
+    <Compile Include="Services\Token.cs" />
+    <Compile Include="Services\VerseTokens.cs" />
+    <Compile Include="Services\WordsCaseSensitive.cs" />
     <Compile Include="Writer\IBibleTableData.cs" />
     <Compile Include="Writer\IBibleTableWriter.cs" />
     <Compile Include="Writer\IBibleWriter.cs" />

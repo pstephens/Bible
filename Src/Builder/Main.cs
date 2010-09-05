@@ -19,8 +19,10 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using Builder.Model;
 using Builder.Parser;
+using Builder.Services;
 
 namespace Builder
 {
@@ -32,7 +34,7 @@ namespace Builder
             if (!ParseBible(out bible))
                 return 1;
 
-            
+            DisplayStatistics(bible);
 
             //string tempPath = Path.Combine(Path.GetTempPath(), "BibleTemp");
             //Directory.CreateDirectory(tempPath);
@@ -54,6 +56,13 @@ namespace Builder
             //Console.ReadLine();
 
             return 0;
+        }
+
+        private static void DisplayStatistics(IBible bible)
+        {
+            Console.WriteLine("Bible Statistics: ");
+            Console.WriteLine("Total case sensitive words: {0}", 
+                bible.GetService<WordsCaseSensitive>().Words().Count());
         }
 
         private static bool ParseBible(out IBible bible)

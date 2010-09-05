@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,12 +17,11 @@
 
 #endregion
 
-using Builder.Model;
-
 namespace Builder.Services
 {
-    public class WordsCaseInsensitive : IService<IBible>
+    public struct Token
     {
-        public IBible Related { get; set; }
+        public string TokenString;
+        public bool IsWord;
     }
 }
