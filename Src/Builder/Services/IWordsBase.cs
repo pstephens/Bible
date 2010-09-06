@@ -17,14 +17,13 @@
 
 #endregion
 
-using System.IO;
-using BibleLib.Raw;
+using System.Collections.Generic;
 
-namespace Builder.Writer
+namespace Builder.Services
 {
-    public interface IBibleTableData
+    public interface IWordsBase
     {
-        HeaderFlags Flags { get; }
-        Stream DataStream { get; }
+        IList<string> Words();
+        int IndexOf(string word);
     }
 }

@@ -23,13 +23,13 @@ using Builder.Model;
 
 namespace Builder.Services
 {
-    public abstract class WordsBase
+    public abstract class WordsBase : IWordsBase
     {
-        private readonly IEqualityComparer<string> comparer;
+        private readonly StringComparer comparer;
         private IBible bible;
-        private HashSet<string> words;
+        private List<string> words;
 
-        protected WordsBase(IEqualityComparer<string> comparer)
+        protected WordsBase(StringComparer comparer)
         {
             this.comparer = comparer;
         }
@@ -43,24 +43,31 @@ namespace Builder.Services
             }
         }
 
-        public IEnumerable<string> Words()
+        public IList<string> Words()
         {
-            if (words == null)
-                BuildWords();
-
-            return words;
+            return words ?? (words = BuildWords());
         }
 
-        private void BuildWords()
+        public int IndexOf(string word)
+        {
+            if(words == null) words = BuildWords();
+
+            var index = words.BinarySearch(word, comparer);
+            return index < 0 ? -1 : index;
+        }
+
+        private List<string> BuildWords()
         {
             if (bible == null)
                 throw new InvalidOperationException();
 
-            words = new HashSet<string>(
+            var uniqueWords = new HashSet<string>(
                 bible.GetService<ITokenToVerseMap>().TokenFrequency()
                     .Where(tf => tf.Token.IsWord)
                     .Select(tf => (string) tf.Token),
                 comparer);
+            var sortedWords = uniqueWords.OrderBy(word => word, comparer);
+            return sortedWords.ToList();
         }
     }
 }

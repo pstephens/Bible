@@ -25,6 +25,6 @@ namespace Builder.Writer
     public interface IBibleTableWriter
     {
         BibleTableId TableId { get; }
-        IBibleTableData BuildTable(IBible bible);
+        IBibleTableInfo BuildTable(IBible bible);
     }
 }

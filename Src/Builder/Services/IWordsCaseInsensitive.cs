@@ -17,13 +17,11 @@
 
 #endregion
 
-using System.Collections.Generic;
 using Builder.Model;
 
 namespace Builder.Services
 {
-    public interface IWordsCaseInsensitive : IService<IBible>
+    public interface IWordsCaseInsensitive : IWordsBase, IService<IBible>
     {
-        IEnumerable<string> Words();
     }
 }

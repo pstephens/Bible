@@ -34,12 +34,10 @@ namespace Builder.UnitTests.Services
         [Test]
         public void Words_should_return_unique_case_insensitive_word_list()
         {
-            var bible =
-                CreateBible("B:Job\r\n1:1 First verse\r\n1:2 Second VERSE!\r\n2:1 Third Verse.\r\n2:2 Isn't a verse");
+            var bible = CreateBible();
 
             var service = bible.GetService<IWordsCaseInsensitive>();
             var words = service.Words()
-                .OrderBy(word => word, StringComparer.InvariantCultureIgnoreCase)
                 .Select(word => word.ToLower())
                 .ToArray();
 
@@ -54,7 +52,20 @@ namespace Builder.UnitTests.Services
             Assert.Throws<InvalidOperationException>(() => service.Words());
         }
 
-        private static IBible CreateBible(string bibleText)
+        [TestCase("ISN'T", Result = 2)]
+        [TestCase("isn't", Result = 2)]
+        [TestCase("b", Result = -1)]
+        [TestCase("z", Result = -1)]
+        public int Exercise_IndexOf(string wordToSearchFor)
+        {
+            var bible = CreateBible();
+
+            var service = bible.GetService<IWordsCaseInsensitive>();
+            return service.IndexOf(wordToSearchFor);
+        }
+
+        private static IBible CreateBible(string bibleText = 
+            "B:Job\r\n1:1 First verse\r\n1:2 Second VERSE!\r\n2:1 Third Verse.\r\n2:2 Isn't a verse")
         {
             var parser = new BibleParser();
             var encodedString = Encoding.ASCII.GetBytes(bibleText);
