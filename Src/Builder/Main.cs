@@ -30,6 +30,8 @@ namespace Builder
     {
         public static int Main()
         {
+            SetupServiceLocator();
+
             IBible bible;
             if (!ParseBible(out bible))
                 return 1;
@@ -56,6 +58,20 @@ namespace Builder
             //Console.ReadLine();
 
             return 0;
+        }
+
+        private static void SetupServiceLocator()
+        {
+            /*var unityContainer = new UnityContainer();
+            unityContainer
+                .RegisterType(typeof (ITokenToVerseMap), typeof (TokenToVerseMap))
+                .RegisterType(typeof (IVerseTokens), typeof (VerseTokens))
+                .RegisterType(typeof (IWordsCaseInsensitive), typeof (WordsCaseInsensitive))
+                .RegisterType(typeof (IWordsCaseSensitive), typeof (WordsCaseSensitive));
+
+            var serviceLocator = new UnityServiceLocator(unityContainer);
+
+            Services.Service.ServiceLocator = serviceLocator;*/
         }
 
         private static bool ParseBible(out IBible bible)
@@ -94,18 +110,41 @@ namespace Builder
             }
         }
 
+        private static void ShowHelp()
+        {
+            Console.WriteLine("Builder.exe <InputFileName>");
+        }
+
         private static void DisplayStatistics(IBible bible)
         {
             Console.WriteLine("Bible Statistics: ");
             Console.WriteLine("Total case sensitive words: {0}", 
-                              bible.GetService<WordsCaseSensitive>().Words().Count());
+                              bible.GetService<IWordsCaseSensitive>().Words().Count());
             Console.WriteLine("Total case insensitive words: {0}",
-                              bible.GetService<WordsCaseInsensitive>().Words().Count());
-        }
+                              bible.GetService<IWordsCaseInsensitive>().Words().Count());
 
-        private static void ShowHelp()
-        {
-            Console.WriteLine("Builder.exe <InputFileName>");
+
+            const int limit = 10;
+            var topWordsByFrequency =
+                bible.GetService<ITokenToVerseMap>().TokenFrequency()
+                    .Where(tokFreq => tokFreq.Token.IsWord)
+                    .Select(tokFreq => new {tokFreq.Token, Frequency = tokFreq.RelatedVerses().Sum(rv => rv.Frequency)})
+                    .OrderByDescending(tokFreq => tokFreq.Frequency)
+                    .Take(limit)
+                    .Select(tokFreq => tokFreq.Token + ": " + tokFreq.Frequency);
+            Console.WriteLine();
+            Console.WriteLine("Top {0} words by frequency: {1}", 
+                limit,
+                string.Join(", ", topWordsByFrequency));
+
+            var nonWordsByFrequency =
+                bible.GetService<ITokenToVerseMap>().TokenFrequency()
+                    .Where(tokFreq => !tokFreq.Token.IsWord)
+                    .Select(tokFreq => new {tokFreq.Token, Frequency = tokFreq.RelatedVerses().Sum(rv => rv.Frequency)})
+                    .OrderByDescending(tokFreq => tokFreq.Frequency)
+                    .Select(tokFreq => "'" + tokFreq.Token + "': " + tokFreq.Frequency);
+            Console.WriteLine();
+            Console.WriteLine("Non-word tokens: {0}", string.Join(", ", nonWordsByFrequency));
         }
 
         /*public static void DisplayStats(Builder.Archive.Bible bible, WordIndex idx)

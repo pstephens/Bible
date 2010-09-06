@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,16 +17,13 @@
 
 #endregion
 
-using System;
-using System.ComponentModel.Composition;
+using System.Collections.Generic;
+using Builder.Model;
 
 namespace Builder.Services
 {
-    [Export(typeof(IWordsCaseInsensitive))]
-    public class WordsCaseInsensitive : WordsBase, IWordsCaseInsensitive
+    public interface IVerseTokens : IService<IVerse>
     {
-        public WordsCaseInsensitive() : base(StringComparer.InvariantCultureIgnoreCase)
-        {
-        }
+        IEnumerable<Token> Tokens();
     }
 }

@@ -37,7 +37,7 @@ namespace Builder.UnitTests.Services
             var bible =
                 CreateBible("B:Job\r\n1:1 First verse\r\n1:2 Second VERSE!\r\n2:1 Third Verse.\r\n2:2 Isn't a verse");
 
-            var service = bible.GetService<WordsCaseInsensitive>();
+            var service = bible.GetService<IWordsCaseInsensitive>();
             var words = service.Words()
                 .OrderBy(word => word, StringComparer.InvariantCultureIgnoreCase)
                 .Select(word => word.ToLower())

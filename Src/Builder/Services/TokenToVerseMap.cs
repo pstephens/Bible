@@ -19,11 +19,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using Builder.Model;
 
 namespace Builder.Services
 {
-    public class TokenToVerseMap : IService<IBible>
+    [Export(typeof(ITokenToVerseMap))]
+    public class TokenToVerseMap : ITokenToVerseMap
     {
         private IBible bible;
         private Dictionary<string, TokenVerseFrequency> map;
@@ -62,7 +64,7 @@ namespace Builder.Services
             var m = new Dictionary<string, TokenVerseFrequency>();
 
             foreach (var verse in bible.AllVerses())
-                AccumulateTokens(m, verse, verse.GetService<VerseTokens>().Tokens());
+                AccumulateTokens(m, verse, verse.GetService<IVerseTokens>().Tokens());
 
             return m;
         }

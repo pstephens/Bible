@@ -34,7 +34,7 @@ namespace Builder.UnitTests.Services
         {
             var verse = CreateTestVerse("This is a sentence with tokens. It's also containing a contraction.");
 
-            var verseTokens = verse.GetService<VerseTokens>();
+            var verseTokens = verse.GetService<IVerseTokens>();
             var tokens = verseTokens.Tokens().Select(token => token.TokenString).ToArray();
 
             Assert.That(tokens, Is.EqualTo(new []
@@ -59,7 +59,7 @@ namespace Builder.UnitTests.Services
             var verse = CreateTestVerse(
                 "This is a sentence with tokens. It's also containing a contraction.");
 
-            var verseTokens = verse.GetService<VerseTokens>();
+            var verseTokens = verse.GetService<IVerseTokens>();
             var tokens = verseTokens.Tokens().Select(token => token.IsWord).ToArray();
 
             Assert.That(tokens, Is.EqualTo(new[]
@@ -74,7 +74,7 @@ namespace Builder.UnitTests.Services
         {
             var verse = CreateTestVerse("Punctuation:;.");
 
-            var verseTokens = verse.GetService<VerseTokens>();
+            var verseTokens = verse.GetService<IVerseTokens>();
             var tokens = verseTokens.Tokens().Select(token => token.IsWord).ToArray();
 
             Assert.That(tokens, Is.EqualTo(new[]
@@ -86,7 +86,7 @@ namespace Builder.UnitTests.Services
         {
             var verse = CreateTestVerse("Ends in a word");
 
-            var verseTokens = verse.GetService<VerseTokens>();
+            var verseTokens = verse.GetService<IVerseTokens>();
             var tokens = verseTokens.Tokens().Select(token => token.TokenString).ToArray();
 
             Assert.That(tokens, Is.EqualTo(new[] {"Ends", " ", "in", " ", "a", " ", "word"}));

@@ -18,6 +18,8 @@
 #endregion
 
 using System;
+using System.ComponentModel.Composition;
+using System.Reflection;
 using Builder.Model;
 using NUnit.Framework;
 
@@ -26,12 +28,18 @@ namespace Builder.UnitTests.Model
     [TestFixture]
     public class ServiceProviderTests
     {
+        [TestFixtureSetUp]
+        public void FixtureSetup()
+        {
+            Composition.RegisterAssembly(Assembly.GetExecutingAssembly());
+        }
+
         [Test]
         public void GetService_should_create_instance_of_FooService()
         {
             var related = new Foo();
 
-            var fooService = related.GetService<FooService>();
+            var fooService = related.GetService<IFooService>();
 
             Assert.That(fooService, Is.InstanceOf(typeof (FooService)));
         }
@@ -41,8 +49,8 @@ namespace Builder.UnitTests.Model
         {
             var related = new Foo();
 
-            var fooService1 = related.GetService<FooService>();
-            var fooService2 = related.GetService<FooService>();
+            var fooService1 = related.GetService<IFooService>();
+            var fooService2 = related.GetService<IFooService>();
 
             Assert.That(fooService1, Is.SameAs(fooService2));
         }
@@ -52,7 +60,7 @@ namespace Builder.UnitTests.Model
         {
             var related = new Foo();
 
-            var fooService = related.GetService<FooService>();
+            var fooService = related.GetService<IFooService>();
 
             Assert.That(fooService.Related, Is.EqualTo(related));
         }
@@ -62,7 +70,7 @@ namespace Builder.UnitTests.Model
         {
             var related = new Foo2();
 
-            Assert.Throws<InvalidOperationException>(() => related.GetService<FooService>());
+            Assert.Throws<InvalidOperationException>(() => related.GetService<IFooService>());
         }
     }
 
@@ -80,7 +88,12 @@ namespace Builder.UnitTests.Model
         string SomeData { get; set; }
     }
 
-    public class FooService : IService<IFoo>
+    public interface IFooService : IService<IFoo>
+    {
+    }
+
+    [Export(typeof(IFooService))]
+    public class FooService : IFooService
     {
         public IFoo Related { get; set; }
     }

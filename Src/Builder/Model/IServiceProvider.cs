@@ -21,6 +21,6 @@ namespace Builder.Model
 {
     public interface IServiceProvider<TRelated> where TRelated : class
     {
-        T GetService<T>() where T : class, IService<TRelated>, new();
+        T GetService<T>() where T : class, IService<TRelated>;
     }
 }

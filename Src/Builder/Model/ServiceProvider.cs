@@ -27,14 +27,17 @@ namespace Builder.Model
         private readonly Dictionary<Type, IService<TRelated>> services =
             new Dictionary<Type, IService<TRelated>>();
 
-        public T GetService<T>() where T : class, IService<TRelated>, new()
+        public T GetService<T>() where T : class, IService<TRelated>
         {
             IService<TRelated> service;
             if (!services.TryGetValue(typeof(T), out service))
             {
-                service = new T {Related = this as TRelated};
+                service = Composition.Container.GetExportedValue<T>();
+
+                service.Related = this as TRelated;
                 if(service.Related == null)
                     throw new InvalidOperationException("ServiceProvider (Related) must implement TRelated.");
+
                 services.Add(typeof (T), service);
             }
 

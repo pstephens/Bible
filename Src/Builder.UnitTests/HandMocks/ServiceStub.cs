@@ -32,7 +32,7 @@ namespace Builder.UnitTests.HandMocks
             services[typeof (T)] = svc;
         }
 
-        public T GetService<T>() where T : class, IService<TRelated>, new()
+        public T GetService<T>() where T : class, IService<TRelated>
         {
             return (T) services[typeof(T)];
         }

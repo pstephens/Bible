@@ -18,44 +18,15 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Builder.Model;
+using System.ComponentModel.Composition;
 
 namespace Builder.Services
 {
-    public class WordsCaseSensitive : IService<IBible>
+    [Export(typeof(IWordsCaseSensitive))]
+    public class WordsCaseSensitive : WordsBase, IWordsCaseSensitive
     {
-        private IBible bible;
-        private HashSet<string> words;
-
-        public IBible Related
+        public WordsCaseSensitive() : base(StringComparer.InvariantCulture)
         {
-            get { return bible; }
-            set { 
-                bible = value;
-                words = null;
-            }
-        }
-
-        public IEnumerable<string> Words()
-        {
-            if (words == null)
-                BuildWords();
-
-            return words;
-        }
-
-        private void BuildWords()
-        {
-            if (bible == null)
-                throw new InvalidOperationException();
-
-            words = new HashSet<string>(
-                bible.GetService<TokenToVerseMap>().TokenFrequency()
-                    .Where(tf => tf.Token.IsWord)
-                    .Select(tf => (string) tf.Token),
-                StringComparer.InvariantCulture);
         }
     }
 }

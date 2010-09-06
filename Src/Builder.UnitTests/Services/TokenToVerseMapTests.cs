@@ -36,7 +36,7 @@ namespace Builder.UnitTests.Services
         {
             var bible = CreateBible();
 
-            var service = bible.GetService<TokenToVerseMap>();
+            var service = bible.GetService<ITokenToVerseMap>();
             var tokens = service.TokenFrequency()
                 .OrderBy(tf => tf.Token.TokenString, StringComparer.InvariantCulture)
                 .Select(tf => tf.Token)
@@ -51,7 +51,7 @@ namespace Builder.UnitTests.Services
         {
             var bible = CreateBible();
 
-            var service = bible.GetService<TokenToVerseMap>();
+            var service = bible.GetService<ITokenToVerseMap>();
             var freq =
                 service.TokenFrequency()
                     .Select(tf => tf.RelatedVerses().Sum(rv => rv.Frequency))
@@ -69,7 +69,7 @@ namespace Builder.UnitTests.Services
             var verse1 = chapter.Verses[0];
             var verse2 = chapter.Verses[1];
 
-            var service = bible.GetService<TokenToVerseMap>();
+            var service = bible.GetService<ITokenToVerseMap>();
             TokenVerseFrequency tokenVerseFrequency;
             Assert.That(service.TryGetTokenFrequency("word", out tokenVerseFrequency), Is.True);
 

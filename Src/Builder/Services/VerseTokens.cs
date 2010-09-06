@@ -18,12 +18,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using Builder.Model;
 
 namespace Builder.Services
 {
-    public class VerseTokens : IService<IVerse>
+    [Export(typeof(IVerseTokens))]
+    public class VerseTokens : IVerseTokens
     {
         private IVerse verse;
         private Token[] tokens;

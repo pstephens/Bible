@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Archive\ItalicPosIndex.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Composition.cs" />
     <Compile Include="IO\ChunkedMemoryStream.cs" />
     <Compile Include="Model\Bible.cs" />
     <Compile Include="Model\Book.cs" />
@@ -160,11 +161,16 @@
     <Compile Include="Parser\IBibleParser.cs" />
     <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Parser\VerseRef.cs" />
+    <Compile Include="Services\ITokenToVerseMap.cs" />
+    <Compile Include="Services\IVerseTokens.cs" />
+    <Compile Include="Services\IWordsCaseInsensitive.cs" />
+    <Compile Include="Services\IWordsCaseSensitive.cs" />
     <Compile Include="Services\Token.cs" />
     <Compile Include="Services\TokenVerseFrequency.cs" />
     <Compile Include="Services\TokenToVerseMap.cs" />
     <Compile Include="Services\VerseFrequency.cs" />
     <Compile Include="Services\VerseTokens.cs" />
+    <Compile Include="Services\WordsBase.cs" />
     <Compile Include="Services\WordsCaseInsensitive.cs" />
     <Compile Include="Services\WordsCaseSensitive.cs" />
     <Compile Include="Writer\IBibleTableData.cs" />
@@ -174,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

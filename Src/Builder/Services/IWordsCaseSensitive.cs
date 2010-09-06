@@ -17,16 +17,13 @@
 
 #endregion
 
-using System;
-using System.ComponentModel.Composition;
+using System.Collections.Generic;
+using Builder.Model;
 
 namespace Builder.Services
 {
-    [Export(typeof(IWordsCaseInsensitive))]
-    public class WordsCaseInsensitive : WordsBase, IWordsCaseInsensitive
+    public interface IWordsCaseSensitive : IService<IBible>
     {
-        public WordsCaseInsensitive() : base(StringComparer.InvariantCultureIgnoreCase)
-        {
-        }
+        IEnumerable<string> Words();
     }
 }
