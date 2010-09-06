@@ -58,13 +58,6 @@ namespace Builder
             return 0;
         }
 
-        private static void DisplayStatistics(IBible bible)
-        {
-            Console.WriteLine("Bible Statistics: ");
-            Console.WriteLine("Total case sensitive words: {0}", 
-                bible.GetService<WordsCaseSensitive>().Words().Count());
-        }
-
         private static bool ParseBible(out IBible bible)
         {
             bible = null;
@@ -99,6 +92,15 @@ namespace Builder
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        private static void DisplayStatistics(IBible bible)
+        {
+            Console.WriteLine("Bible Statistics: ");
+            Console.WriteLine("Total case sensitive words: {0}", 
+                              bible.GetService<WordsCaseSensitive>().Words().Count());
+            Console.WriteLine("Total case insensitive words: {0}",
+                              bible.GetService<WordsCaseInsensitive>().Words().Count());
         }
 
         private static void ShowHelp()

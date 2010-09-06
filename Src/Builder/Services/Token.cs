@@ -21,7 +21,48 @@ namespace Builder.Services
 {
     public struct Token
     {
-        public string TokenString;
-        public bool IsWord;
+        private readonly string token;
+
+        public Token(string token) : this()
+        {
+            this.token = token;
+        }
+
+        public static implicit operator Token(string token)
+        {
+            return new Token(token);
+        }
+
+        public static implicit operator string(Token token)
+        {
+            return token.TokenString;
+        }
+
+        public bool Equals(Token other)
+        {
+            return Equals(other.token, token);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (obj.GetType() != typeof (Token)) return false;
+            return Equals((Token) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return token.GetHashCode();
+        }
+
+        public string TokenString
+        {
+            get { return token; }
+        }
+
+        public bool IsWord
+        {
+            get { return VerseTokens.IsWordChar(TokenString[0]); }
+        }
     }
 }

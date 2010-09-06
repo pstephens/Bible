@@ -19,12 +19,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Builder.Model;
 
 namespace Builder.Services
 {
-    public class WordsCaseSensitive : IService<IBible>
+    public class WordsCaseInsensitive : IService<IBible>
     {
         private IBible bible;
         private HashSet<string> words;
@@ -52,10 +51,8 @@ namespace Builder.Services
                 throw new InvalidOperationException();
 
             words = new HashSet<string>(
-                bible.GetService<TokenToVerseMap>().TokenFrequency()
-                    .Where(tf => tf.Token.IsWord)
-                    .Select(tf => (string) tf.Token),
-                StringComparer.InvariantCulture);
+                bible.GetService<WordsCaseSensitive>().Words(),
+                StringComparer.InvariantCultureIgnoreCase);
         }
     }
 }

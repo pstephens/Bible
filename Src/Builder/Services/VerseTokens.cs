@@ -76,16 +76,15 @@ namespace Builder.Services
                         }
                         else
                         {
-                            yield return new Token { TokenString = str.Substring(i, 1)};
+                            yield return new Token(str.Substring(i, 1));
                             state = State.NonWord;
                         }
                         break;
                     case State.Word:
                         if (!IsWordChar(str[i]))
                         {
-                            yield return new Token { IsWord = true, 
-                                TokenString = str.Substring(tokenStartPos, i - tokenStartPos)};
-                            yield return new Token { TokenString = str.Substring(i, 1)};
+                            yield return new Token(str.Substring(tokenStartPos, i - tokenStartPos));
+                            yield return new Token(str.Substring(i, 1));
                             state = State.NonWord;
                         }
                         break;
@@ -95,10 +94,10 @@ namespace Builder.Services
             }
 
             if(state == State.Word)
-                yield return new Token { IsWord = true, TokenString = str.Substring(tokenStartPos)};
+                yield return new Token(str.Substring(tokenStartPos));
         }
 
-        private static bool IsWordChar(char ch)
+        internal static bool IsWordChar(char ch)
         {
             return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '\'';
         }

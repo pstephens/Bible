@@ -161,7 +161,11 @@
     <Compile Include="Parser\ParseException.cs" />
     <Compile Include="Parser\VerseRef.cs" />
     <Compile Include="Services\Token.cs" />
+    <Compile Include="Services\TokenVerseFrequency.cs" />
+    <Compile Include="Services\TokenToVerseMap.cs" />
+    <Compile Include="Services\VerseFrequency.cs" />
     <Compile Include="Services\VerseTokens.cs" />
+    <Compile Include="Services\WordsCaseInsensitive.cs" />
     <Compile Include="Services\WordsCaseSensitive.cs" />
     <Compile Include="Writer\IBibleTableData.cs" />
     <Compile Include="Writer\IBibleTableWriter.cs" />
