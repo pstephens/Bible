@@ -17,14 +17,22 @@
 
 #endregion
 
-using System.Collections.Generic;
-using System.IO;
-using Builder.Model;
+using System;
+using System.Runtime.Serialization;
 
-namespace Builder.Writer
+namespace BibleLib.Raw
 {
-    public interface IBibleWriter
+    [Serializable]
+    public class BibleFormatException : Exception
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        public BibleFormatException(string message, Exception innerException = null)
+            : base(message, innerException)
+        {
+        }
+
+        protected BibleFormatException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
     }
 }

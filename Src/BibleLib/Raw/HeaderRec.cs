@@ -17,13 +17,32 @@
 
 #endregion
 
+using System.IO;
+
 namespace BibleLib.Raw
 {
     public struct HeaderRec
     {
+        public const int RecSize = 10;
+
         public BibleTableId TableId { get; set; }
         public HeaderFlags Flags { get; set; }
         public int Size { get; set; }
         public int CompressedSize { get; set; }
+
+        // Not serialized
+        public int StartByteIndex { get; set; }
+
+        public static HeaderRec ReadFrom(BinaryReader r, int startByteIndex)
+        {
+            return new HeaderRec
+                       {
+                           TableId = (BibleTableId) r.ReadByte(),
+                           Flags = (HeaderFlags) r.ReadByte(),
+                           Size = r.ReadInt32(),
+                           CompressedSize = r.ReadInt32(),
+                           StartByteIndex = startByteIndex
+                       };
+        }
     }
 }

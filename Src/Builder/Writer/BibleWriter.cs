@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -14,17 +14,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Builder.Model;
 
 namespace Builder.Writer
 {
-    public interface IBibleWriter
+    public class BibleWriter : IBibleWriter
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        public void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables)
+        {
+            if(output == null)
+                throw new ArgumentNullException("output");
+            if(bible == null)
+                throw new ArgumentNullException("bible");
+            tables = tables ?? Enumerable.Empty<IBibleTableWriter>();
+        }
     }
 }

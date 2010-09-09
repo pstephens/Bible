@@ -173,6 +173,7 @@
     <Compile Include="Services\WordsBase.cs" />
     <Compile Include="Services\WordsCaseInsensitive.cs" />
     <Compile Include="Services\WordsCaseSensitive.cs" />
+    <Compile Include="Writer\BibleWriter.cs" />
     <Compile Include="Writer\IBibleTableInfo.cs" />
     <Compile Include="Writer\IBibleTableWriter.cs" />
     <Compile Include="Writer\IBibleWriter.cs" />

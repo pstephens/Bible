@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raw\BibleFormatException.cs" />
     <Compile Include="Raw\BibleTableId.cs" />
+    <Compile Include="Raw\Header.cs" />
     <Compile Include="Raw\HeaderRec.cs" />
     <Compile Include="Raw\HeaderFlags.cs" />
     <Compile Include="Raw\Words_CS_AlphaRec.cs" />
