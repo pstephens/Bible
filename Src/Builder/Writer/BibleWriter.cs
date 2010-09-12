@@ -20,19 +20,46 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using BibleLib.Raw;
 using Builder.Model;
 
 namespace Builder.Writer
 {
     public class BibleWriter : IBibleWriter
     {
-        public void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables)
+        public static readonly Version FileVersion = new Version(2, 0, 0, 0);
+
+        public void Write(BinaryWriter output, IBible bible, IEnumerable<IBibleTableWriter> tables)
         {
             if(output == null)
                 throw new ArgumentNullException("output");
             if(bible == null)
                 throw new ArgumentNullException("bible");
             tables = tables ?? Enumerable.Empty<IBibleTableWriter>();
+
+            OutputFileType(output);
+            OutputFileVersion(output);
+            OutputRecordCount(output, tables.Count());
+        }
+
+        private static void OutputFileType(BinaryWriter output)
+        {
+            var bytes = Encoding.ASCII.GetBytes(Header.ExpectedHeaderString);
+            output.Write(bytes, 0, bytes.Length);
+        }
+
+        private static void OutputFileVersion(BinaryWriter output)
+        {
+            output.Write((byte) FileVersion.Major);
+            output.Write((byte) FileVersion.Minor);
+            output.Write((byte) FileVersion.Revision);
+            output.Write((byte) FileVersion.Build);
+        }
+
+        private static void OutputRecordCount(BinaryWriter output, int tableCount)
+        {
+            output.Write((byte) tableCount);
         }
     }
 }

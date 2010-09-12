@@ -26,24 +26,24 @@ namespace BibleLib.Raw
 {
     public class Header
     {
-        public const int HeaderSize = 8 + 4 + 4;
+        public const int HeaderSize = 8 + 4 + 1;
         public const string ExpectedHeaderString = "AvBible-";
 
         public Version FileVersion { get; private set; }
 
         public IList<HeaderRec> HeaderRecords { get; private set; }
 
-        private Header(Stream inputStream)
+        private Header(BinaryReader input)
         {
             var buff = new byte[16];
-            if (inputStream.Read(buff, 0, ExpectedHeaderString.Length) != ExpectedHeaderString.Length)
+            if (input.Read(buff, 0, ExpectedHeaderString.Length) != ExpectedHeaderString.Length)
                 throw BibleFormatException("Not a Bible file.");
 
             var headerString = Encoding.ASCII.GetString(buff, 0, ExpectedHeaderString.Length);
             if (!headerString.Equals(ExpectedHeaderString, StringComparison.Ordinal))
                 throw BibleFormatException("Not a Bible file.");
 
-            if (inputStream.Read(buff, 0, 4) != 4)
+            if (input.Read(buff, 0, 4) != 4)
                 throw BibleFormatException("Invalid Bible file version.");
 
             FileVersion = new Version(buff[0], buff[1], buff[2], buff[3]);
@@ -51,28 +51,25 @@ namespace BibleLib.Raw
                 throw BibleFormatException("Major Bible file version must be equal to 2. Instead it is {0}.",
                                            FileVersion);
             
-            var recCount = inputStream.ReadByte();
-            if (recCount < 0 || recCount > 255)
+            if(input.Read(buff, 0, 1) != 1)
                 throw BibleFormatException("Invalid file header.");
+            var recCount = buff[0];
 
-            LoadHeaderRecords(inputStream, recCount);
+            LoadHeaderRecords(input, recCount);
         }
 
-        private void LoadHeaderRecords(Stream inputStream, int recCount)
+        private void LoadHeaderRecords(BinaryReader input, int recCount)
         {
             var headerRecords = new List<HeaderRec>(recCount);
             HeaderRecords = headerRecords.AsReadOnly();
             try
             {
                 var startIndex = HeaderSize + recCount*HeaderRec.RecSize;
-                using (var r = new BinaryReader(inputStream))
+                for (var i = 0; i < recCount; ++i)
                 {
-                    for (var i = 0; i < recCount; ++i)
-                    {
-                        var rec = HeaderRec.ReadFrom(r, startIndex);
-                        startIndex += rec.CompressedSize;
-                        headerRecords.Add(rec);
-                    }
+                    var rec = HeaderRec.ReadFrom(input, startIndex);
+                    startIndex += rec.CompressedSize;
+                    headerRecords.Add(rec);
                 }
             }
             catch(Exception ex)
@@ -94,9 +91,9 @@ namespace BibleLib.Raw
             return new BibleFormatException(string.Format(message, args), innerException);
         }
 
-        public static Header ReadFrom(Stream inputStream)
+        public static Header ReadFrom(BinaryReader input)
         {
-            return new Header(inputStream);
+            return new Header(input);
         }
     }
 }

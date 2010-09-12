@@ -35,7 +35,7 @@ namespace BibleLib.Raw
 
         public static HeaderRec ReadFrom(BinaryReader r, int startByteIndex)
         {
-            return new HeaderRec
+            var rec = new HeaderRec
                        {
                            TableId = (BibleTableId) r.ReadByte(),
                            Flags = (HeaderFlags) r.ReadByte(),
@@ -43,6 +43,11 @@ namespace BibleLib.Raw
                            CompressedSize = r.ReadInt32(),
                            StartByteIndex = startByteIndex
                        };
+
+            if(rec.CompressedSize < 0 || rec.Size < 0)
+                throw new BibleFormatException("Invalid size in header record.");
+
+            return rec;
         }
     }
 }

@@ -25,6 +25,6 @@ namespace Builder.Writer
 {
     public interface IBibleWriter
     {
-        void Write(Stream output, IBible bible, IEnumerable<IBibleTableWriter> tables);
+        void Write(BinaryWriter output, IBible bible, IEnumerable<IBibleTableWriter> tables);
     }
 }

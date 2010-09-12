@@ -19,6 +19,7 @@
 
 using System;
 using System.IO;
+using BibleLib.Raw;
 using Builder.UnitTests.HandMocks;
 using Builder.Writer;
 using NUnit.Framework;
@@ -46,24 +47,26 @@ namespace Builder.UnitTests.Writer
         public void Write_with_null_bible_should_throw()
         {
             var writer = CreateWriterUnderTest();
-            var stream = new MemoryStream();
+            var binaryWriter = new BinaryWriter(new MemoryStream());
 
-            Assert.Throws<ArgumentNullException>(() => writer.Write(stream, null, null));
+            Assert.Throws<ArgumentNullException>(() => writer.Write(binaryWriter, null, null));
         }
 
         [Test]
         public void Write_with_no_tables_should_write_simple_header()
         {
             var writer = CreateWriterUnderTest();
-            var stream = new MemoryStream();
+            var binaryWriter = new BinaryWriter(new MemoryStream());
+            var binaryReader = new BinaryReader(binaryWriter.BaseStream);
             var bible = new BibleStub();
 
-            writer.Write(stream, bible, null);
+            writer.Write(binaryWriter, bible, null);
 
-            stream.Seek(0, SeekOrigin.Begin);
-            var reader = new BinaryReader(stream);
+            binaryWriter.Seek(0, SeekOrigin.Begin);
+            var header = Header.ReadFrom(binaryReader);
 
-            Assert.Ignore("TODO");
+            Assert.That(header.FileVersion, Is.EqualTo(BibleWriter.FileVersion));
+            Assert.That(header.HeaderRecords.Count, Is.EqualTo(0));
         }
     }
 }
