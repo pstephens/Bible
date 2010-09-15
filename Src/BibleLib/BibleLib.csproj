@@ -46,6 +46,7 @@
     <Compile Include="Raw\Header.cs" />
     <Compile Include="Raw\HeaderRec.cs" />
     <Compile Include="Raw\HeaderFlags.cs" />
+    <Compile Include="Raw\SubsetStream.cs" />
     <Compile Include="Raw\Words_CS_AlphaRec.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -36,11 +36,16 @@ namespace Builder.Writer
                 throw new ArgumentNullException("output");
             if(bible == null)
                 throw new ArgumentNullException("bible");
+            
             tables = tables ?? Enumerable.Empty<IBibleTableWriter>();
+            var processedTables = ProcessTables(bible, tables);
 
             OutputFileType(output);
             OutputFileVersion(output);
-            OutputRecordCount(output, tables.Count());
+            OutputRecordCount(output, processedTables.Count());
+
+            OutputHeaderRecs(output, processedTables);
+            OutputTableData(output, processedTables);
         }
 
         private static void OutputFileType(BinaryWriter output)
@@ -59,7 +64,61 @@ namespace Builder.Writer
 
         private static void OutputRecordCount(BinaryWriter output, int tableCount)
         {
+            if(tableCount > 255)
+                throw new InvalidOperationException("Only 255 tables allowed per file.");
             output.Write((byte) tableCount);
+        }
+
+        private static IEnumerable<TableData> ProcessTables(IBible bible, IEnumerable<IBibleTableWriter> tables)
+        {
+            return
+                (from table in tables
+                 let tableInfo = table.BuildTable(bible)
+                 let data = ReadStreamData(tableInfo.DataStream)
+                 select new TableData
+                            {
+                                Id = table.TableId,
+                                Flags = tableInfo.Flags,
+                                Data = data,
+                                StoredData = data
+                            })
+                    .ToArray();
+        }
+
+        private static byte[] ReadStreamData(Stream dataStream)
+        {
+            var len = (int) dataStream.Length;
+            dataStream.Seek(0, SeekOrigin.Begin);
+            var bytes = new byte[len];
+            dataStream.Read(bytes, 0, len);
+            return bytes;
+        }
+
+        private static void OutputHeaderRecs(BinaryWriter writer, IEnumerable<TableData> processedTables)
+        {
+            foreach (var table in processedTables)
+            {
+                writer.Write((byte) table.Id);
+                writer.Write((byte) table.Flags);
+                writer.Write(table.Data.Length);
+                writer.Write(table.StoredData.Length);
+            }
+        }
+
+        private static void OutputTableData(BinaryWriter writer, IEnumerable<TableData> processedTables)
+        {
+            foreach (var table in processedTables)
+            {
+                writer.Write(table.StoredData);
+            }
+        }
+
+        private class TableData
+        {
+            public BibleTableId Id;
+            public HeaderFlags Flags;
+            public Byte[] Data;
+            public Byte[] StoredData;
         }
     }
 }
