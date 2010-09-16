@@ -24,10 +24,27 @@ namespace BibleLib.Raw
 {
     public class SubsetStream : Stream
     {
+        private readonly Stream baseStream;
+        private readonly long start;
+        private readonly long length;
+
         public SubsetStream(Stream baseStream, long start, long length, 
             bool leaveOpen = false)
         {
-            
+            if(baseStream == null)
+                throw new ArgumentNullException("baseStream");
+            if(start < 0)
+                throw new ArgumentException("'start' must be zero or greater.", "start");
+            if(length < 0)
+                throw new ArgumentException("'length' must be zero or greater.", "length");
+            if (!baseStream.CanRead || !baseStream.CanSeek)
+                throw new InvalidOperationException("baseStream must be readable.");
+
+            this.baseStream = baseStream;
+            this.start = start;
+            this.length = length;
+
+            baseStream.Seek(start, SeekOrigin.Begin);
         }
 
         public override void Flush()
@@ -72,12 +89,12 @@ namespace BibleLib.Raw
 
         public override long Length
         {
-            get { throw new NotImplementedException(); }
+            get { return Math.Min(length, Math.Max(0, baseStream.Length - start)); }
         }
 
         public override long Position
         {
-            get { throw new NotImplementedException(); }
+            get { return 0; }
             set { throw new NotImplementedException(); }
         }
     }

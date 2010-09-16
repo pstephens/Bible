@@ -17,9 +17,11 @@
 
 #endregion
 
+using System;
 using System.IO;
 using BibleLib.Raw;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace BibleLib.UnitTests.Raw
 {
@@ -34,6 +36,7 @@ namespace BibleLib.UnitTests.Raw
                 bytes[i] = i;
             for(var j = 0; j < 100; ++j)
                 str.Write(bytes, 0, bytes.Length);
+            str.Seek(0, SeekOrigin.Begin);
             return str;
         }
 
@@ -65,6 +68,79 @@ namespace BibleLib.UnitTests.Raw
             var stream = CreateGenericSubsetStream();
 
             Assert.That(stream.CanSeek, Is.True);
+        }
+
+        [Test]
+        public void Constructor_input_stream_must_not_be_null()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SubsetStream(null, 0, 10));
+        }
+
+        [TestCase(true)]
+        [TestCase(false, ExpectedException=typeof(InvalidOperationException))]
+        public void Exercise_Constructor_with_input_stream_with_various_CanRead(bool canRead)
+        {
+            var baseStream = MockRepository.GenerateStub<Stream>();
+            baseStream.Stub(bs => bs.CanSeek).Return(true);
+            baseStream.Stub(bs => bs.CanRead).Return(canRead);
+
+            new SubsetStream(baseStream, 10, 100);
+        }
+
+        [TestCase(true)]
+        [TestCase(false, ExpectedException = typeof(InvalidOperationException))]
+        public void Exercise_Constructor_with_input_stream_with_various_CanSeek(bool canSeek)
+        {
+            var baseStream = MockRepository.GenerateStub<Stream>();
+            baseStream.Stub(bs => bs.CanRead).Return(true);
+            baseStream.Stub(bs => bs.CanSeek).Return(canSeek);
+
+            new SubsetStream(baseStream, 10, 100);
+        }
+
+        [Test]
+        public void Length_should_return_between_zero_and_length()
+        {
+            var baseStream = CreateStreamWithPattern();
+            var stream = new SubsetStream(baseStream, 5, 20);
+
+            Assert.That(stream.Length, Is.EqualTo(20));
+        }
+
+        [TestCase(10, 20, Result = 20)]
+        [TestCase(990, 20, Result = 10)]
+        [TestCase(1000, 20, Result = 0)]
+        [TestCase(1200, 20, Result = 0)]
+        [TestCase(0, 1200, Result = 1000)]
+        [TestCase(-5, 20, ExpectedException = typeof(ArgumentException))]
+        [TestCase(0, -5, ExpectedException = typeof(ArgumentException))]
+        [TestCase(0, 0, Result = 0)]
+        public long Exercise_constructor_with_various_start_and_length(int start, int length)
+        {
+            var baseStream = CreateStreamWithPattern();
+            var stream = new SubsetStream(baseStream, start, length);
+            return stream.Length;
+        }
+
+        [TestCase(20, Result = 20)]
+        [TestCase(0, Result = 0)]
+        [TestCase(1000, Result = 1000)]
+        [TestCase(1100, Result = 1100)]
+        public long BaseStream_Position_should_be_equal_to_start_or_end_of_stream(int start)
+        {
+            var baseStream = CreateStreamWithPattern();
+            new SubsetStream(baseStream, start, 100);
+            return baseStream.Position;
+        }
+
+        [TestCase(10, 20)]
+        [TestCase(0, 20)]
+        [TestCase(1100, 50)]
+        public void Position_should_be_zero_on_newly_constructed_SubsetStream(int start, int length)
+        {
+            var baseStream = CreateStreamWithPattern();
+            var stream = new SubsetStream(baseStream, start, length);
+            Assert.That(stream.Position, Is.EqualTo(0));
         }
     }
 }
