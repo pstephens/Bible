@@ -27,6 +27,7 @@ namespace BibleLib.Raw
         private readonly Stream baseStream;
         private readonly long start;
         private readonly long length;
+        private readonly bool leaveOpen;
 
         public SubsetStream(Stream baseStream, long start, long length, 
             bool leaveOpen = false)
@@ -43,13 +44,13 @@ namespace BibleLib.Raw
             this.baseStream = baseStream;
             this.start = start;
             this.length = length;
+            this.leaveOpen = leaveOpen;
 
             baseStream.Seek(start, SeekOrigin.Begin);
         }
 
         public override void Flush()
         {
-            throw new NotImplementedException();
         }
 
         public override long Seek(long offset, SeekOrigin origin)
@@ -94,8 +95,23 @@ namespace BibleLib.Raw
 
         public override long Position
         {
-            get { return 0; }
-            set { throw new NotImplementedException(); }
+            get { return Math.Max(0, baseStream.Position - start); }
+            set
+            {
+                if(value < 0)
+                    throw new ArgumentException("Position must be zero or greater.", "value");
+                baseStream.Position = start + value;
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if(!leaveOpen)
+                    baseStream.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

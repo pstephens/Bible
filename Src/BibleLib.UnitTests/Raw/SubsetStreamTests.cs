@@ -126,7 +126,7 @@ namespace BibleLib.UnitTests.Raw
         [TestCase(0, Result = 0)]
         [TestCase(1000, Result = 1000)]
         [TestCase(1100, Result = 1100)]
-        public long BaseStream_Position_should_be_equal_to_start_or_end_of_stream(int start)
+        public long BaseStream_Position_should_be_equal_to_physical_start_of_stream(int start)
         {
             var baseStream = CreateStreamWithPattern();
             new SubsetStream(baseStream, start, 100);
@@ -142,5 +142,57 @@ namespace BibleLib.UnitTests.Raw
             var stream = new SubsetStream(baseStream, start, length);
             Assert.That(stream.Position, Is.EqualTo(0));
         }
+
+        [TestCase(-5, ExpectedException = typeof(ArgumentException))]
+        [TestCase(0, Result = 0)]
+        [TestCase(500, Result = 500)]
+        [TestCase(1000, Result = 1000)]
+        [TestCase(1100, Result = 1100)]
+        public long Exercise_setting_Position(long setPositionTo)
+        {
+            var baseStream = CreateStreamWithPattern();
+            var stream = new SubsetStream(baseStream, 10, 500);
+
+            stream.Position = setPositionTo;
+
+            return stream.Position;
+        }
+
+        [Test]
+        public void Flush_should_not_fail()
+        {
+            var baseStream = new MemoryStream();
+            var stream = new SubsetStream(baseStream, 10, 20);
+
+            stream.Flush();
+        }
+
+        [Test]
+        public void BaseStream_should_be_disposed_when_leaveOpen_is_false()
+        {
+            var baseStream = MockRepository.GenerateStub<Stream>();
+            baseStream.Stub(bs => bs.CanRead).Return(true);
+            baseStream.Stub(bs => bs.CanSeek).Return(true);
+            using (new SubsetStream(baseStream, 10, 20))
+            {
+            }
+            
+            baseStream.AssertWasCalled(bs => bs.Dispose());
+        }
+
+        [Test]
+        public void BaseStream_should_NOT_be_disposed_when_leaveOpen_is_true()
+        {
+            var baseStream = MockRepository.GenerateStub<Stream>();
+            baseStream.Stub(bs => bs.CanRead).Return(true);
+            baseStream.Stub(bs => bs.CanSeek).Return(true);
+            using (new SubsetStream(baseStream, 10, 20, true))
+            {
+            }
+
+            baseStream.AssertWasNotCalled(bs => bs.Dispose());
+        }
+
+        
     }
 }
