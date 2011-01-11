@@ -44,7 +44,8 @@ namespace WindowsPhoneTestRunner
 
         private static void GetTestAssemblies(UnitTestSettings settings)
         {
-            settings.TestAssemblies.Add(BibleLib.UnitTests.Properties.TestAssembly.GetAssembly());
+            // Add more assemblies here that need to be unit tested.
+            settings.TestAssemblies.Add(BibleLib.UnitTests.Properties.UnitTestAssembly.GetAssembly());
         }
     }
 }

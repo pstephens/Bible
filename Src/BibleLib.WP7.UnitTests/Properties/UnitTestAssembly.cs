@@ -21,7 +21,7 @@ using System.Reflection;
 
 namespace BibleLib.UnitTests.Properties
 {
-    public static class TestAssembly
+    public static class UnitTestAssembly
     {
         public static Assembly GetAssembly()
         {
