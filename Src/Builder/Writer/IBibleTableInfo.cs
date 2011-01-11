@@ -18,7 +18,7 @@
 #endregion
 
 using System.IO;
-using BibleLib.Raw;
+using BibleLib.Reader;
 
 namespace Builder.Writer
 {

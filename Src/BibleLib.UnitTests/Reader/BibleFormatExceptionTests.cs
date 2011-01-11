@@ -18,11 +18,10 @@
 #endregion
 
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using BibleLib.Raw;
+using BibleLib.Reader;
 using NUnit.Framework;
 
-namespace BibleLib.UnitTests.Raw
+namespace BibleLib.UnitTests.Reader
 {
     [TestFixture]
     public class BibleFormatExceptionTests
@@ -34,20 +33,6 @@ namespace BibleLib.UnitTests.Raw
 
             Assert.That(ex.Message, Is.EqualTo("Message"));
             Assert.That(ex.InnerException, Is.Null);
-        }
-
-        [Test]
-        public void BibleFormatException_should_serialize_and_deserialize()
-        {
-            var ex = new BibleFormatException("Something");
-            var formatter = new BinaryFormatter();
-            var stream = new MemoryStream();
-
-            formatter.Serialize(stream, ex);
-            stream.Seek(0, SeekOrigin.Begin);
-            var anotherException = (BibleFormatException) formatter.Deserialize(stream);
-
-            Assert.That(anotherException.Message, Is.EqualTo("Something"));
         }
     }
 }

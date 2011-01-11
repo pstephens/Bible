@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BibleLib.Raw
+namespace BibleLib.Reader
 {
     public class Header
     {
@@ -39,7 +39,7 @@ namespace BibleLib.Raw
             if (input.Read(buff, 0, ExpectedHeaderString.Length) != ExpectedHeaderString.Length)
                 throw BibleFormatException("Not a Bible file.");
 
-            var headerString = Encoding.ASCII.GetString(buff, 0, ExpectedHeaderString.Length);
+            var headerString = Encoding.UTF8.GetString(buff, 0, ExpectedHeaderString.Length);
             if (!headerString.Equals(ExpectedHeaderString, StringComparison.Ordinal))
                 throw BibleFormatException("Not a Bible file.");
 

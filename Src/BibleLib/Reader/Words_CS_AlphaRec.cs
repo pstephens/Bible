@@ -17,14 +17,10 @@
 
 #endregion
 
-using System;
-
-namespace BibleLib.Raw
+namespace BibleLib.Reader
 {
-    [Flags]
-    public enum HeaderFlags
+    public struct Words_CS_AlphaRec
     {
-        None = 0,
-        GZipCompressed = 1
+        
     }
 }

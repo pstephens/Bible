@@ -1,4 +1,4 @@
-#region Copyright Notice
+﻿#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,22 +17,24 @@
 
 #endregion
 
-using System;
-using System.Runtime.Serialization;
-
-namespace BibleLib.Raw
+namespace BibleLib.Reader
 {
-    [Serializable]
-    public class BibleFormatException : Exception
+    public enum BibleTableId : byte
     {
-        public BibleFormatException(string message, Exception innerException = null)
-            : base(message, innerException)
-        {
-        }
+        Header  = 0,
+        
+        Words_CS_Alpha = 10,
+        Words_CS_Freq = 11,
+        Words_CS_VerseRef = 12,
+        Words_CS_String_Blob = 13,
+        Words_CI_Alpha = 14,
+        Words_CI_WordRef = 15,
 
-        protected BibleFormatException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+        Books = 20,
+        Chapters = 21,
+        Verses = 22,
+
+        VerseWords_Uncompressed_Blob = 30,
+        VerseWords_Int16Compressed_Blob = 31,
     }
 }

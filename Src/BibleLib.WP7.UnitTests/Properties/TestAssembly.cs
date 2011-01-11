@@ -1,6 +1,6 @@
 #region Copyright Notice
 
-/* Copyright 2009-2010 Peter Stephens
+/* Copyright 2009-2011 Peter Stephens
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -17,10 +17,15 @@
 
 #endregion
 
-namespace BibleLib.Raw
+using System.Reflection;
+
+namespace BibleLib.UnitTests.Properties
 {
-    public struct Words_CS_AlphaRec
+    public static class TestAssembly
     {
-        
+        public static Assembly GetAssembly()
+        {
+            return Assembly.GetExecutingAssembly();
+        }
     }
 }

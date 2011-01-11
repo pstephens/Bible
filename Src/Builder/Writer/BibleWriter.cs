@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using BibleLib.Raw;
+using BibleLib.Reader;
 using Builder.Model;
 
 namespace Builder.Writer

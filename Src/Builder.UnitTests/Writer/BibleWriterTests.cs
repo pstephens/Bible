@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using BibleLib.Raw;
+using BibleLib.Reader;
 using Builder.Model;
 using Builder.UnitTests.HandMocks;
 using Builder.Writer;

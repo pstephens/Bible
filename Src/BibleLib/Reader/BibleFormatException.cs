@@ -1,4 +1,4 @@
-﻿#region Copyright Notice
+#region Copyright Notice
 
 /* Copyright 2009-2010 Peter Stephens
 
@@ -17,14 +17,15 @@
 
 #endregion
 
-using BibleLib.Reader;
-using Builder.Model;
+using System;
 
-namespace Builder.Writer
+namespace BibleLib.Reader
 {
-    public interface IBibleTableWriter
+    public class BibleFormatException : Exception
     {
-        BibleTableId TableId { get; }
-        IBibleTableInfo BuildTable(IBible bible);
+        public BibleFormatException(string message, Exception innerException = null)
+            : base(message, innerException)
+        {
+        }
     }
 }

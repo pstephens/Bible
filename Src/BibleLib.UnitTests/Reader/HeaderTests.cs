@@ -18,12 +18,12 @@
 #endregion
 
 using System;
-using BibleLib.Raw;
 using System.IO;
 using System.Text;
+using BibleLib.Reader;
 using NUnit.Framework;
 
-namespace BibleLib.UnitTests.Raw
+namespace BibleLib.UnitTests.Reader
 {
     [TestFixture]
     public class HeaderTests
@@ -49,7 +49,7 @@ namespace BibleLib.UnitTests.Raw
         [Test]
         public void File_that_is_not_at_least_8_bytes_should_throw()
         {
-            var bytes = Encoding.ASCII.GetBytes("Almost8");
+            var bytes = Encoding.UTF8.GetBytes("Almost8");
             var str = new MemoryStream(bytes);
             Assert.That(str.Position, Is.EqualTo(0));
             var rd = new BinaryReader(str);
@@ -153,7 +153,7 @@ namespace BibleLib.UnitTests.Raw
                            };
             var rec2 = new HeaderRec
                            {
-                               TableId = BibleTableId.VerseWords_Compressed_Blob,
+                               TableId = BibleTableId.Verses,
                                Flags = HeaderFlags.None,
                                Size = 50,
                                CompressedSize = 50,
@@ -223,7 +223,7 @@ namespace BibleLib.UnitTests.Raw
 
         private static void WriteAscii(BinaryWriter wr, string stringToWrite)
         {
-            var bytes = Encoding.ASCII.GetBytes(stringToWrite);
+            var bytes = Encoding.UTF8.GetBytes(stringToWrite);
             wr.Write(bytes, 0, bytes.Length);
         }
 

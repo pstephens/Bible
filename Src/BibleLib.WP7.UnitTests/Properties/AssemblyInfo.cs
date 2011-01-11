@@ -20,17 +20,17 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("BibleLib")]
+[assembly: AssemblyTitle("BibleLib.WP7.UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Diligent Software")]
-[assembly: AssemblyProduct("BibleLib")]
-[assembly: AssemblyCopyright("Copyright ©  2010-2011")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("BibleLib.WP7.UnitTests")]
+[assembly: AssemblyCopyright("Copyright ©  2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
-[assembly: Guid("153fe5af-298d-4c14-8b47-30c9f06e515c")]
+[assembly: Guid("aa5a81ea-480d-4f3d-91d2-d80ed289861c")]
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

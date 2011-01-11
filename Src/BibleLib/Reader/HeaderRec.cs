@@ -19,7 +19,7 @@
 
 using System.IO;
 
-namespace BibleLib.Raw
+namespace BibleLib.Reader
 {
     public struct HeaderRec
     {
