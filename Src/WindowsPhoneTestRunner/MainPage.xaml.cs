@@ -46,6 +46,7 @@ namespace WindowsPhoneTestRunner
         {
             // Add more assemblies here that need to be unit tested.
             settings.TestAssemblies.Add(BibleLib.UnitTests.Properties.UnitTestAssembly.GetAssembly());
+            settings.TestAssemblies.Add(BibleLoader.WP7.UnitTests.Properties.UnitTestAssembly.GetAssembly());
         }
     }
 }

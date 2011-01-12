@@ -46,6 +46,7 @@
     <Compile Include="Reader\Header.cs" />
     <Compile Include="Reader\HeaderRec.cs" />
     <Compile Include="Reader\HeaderFlags.cs" />
+    <Compile Include="Reader\IResourceLoader.cs" />
     <Compile Include="Reader\Words_CS_AlphaRec.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
