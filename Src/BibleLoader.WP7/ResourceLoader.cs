@@ -26,10 +26,20 @@ namespace BibleLoader.WP7
 {
     public class ResourceLoader : IResourceLoader
     {
+        private readonly string baseUri;
+
+        public ResourceLoader(string baseUri)
+        {
+            this.baseUri = baseUri ?? "";
+        }
+
         public Stream GetResourceStream(string name)
         {
-            var resourceUri = new Uri(name, UriKind.Relative);
+            var resourceUri = new Uri(baseUri + name, UriKind.Relative);
             var resourceInfo = Application.GetResourceStream(resourceUri);
+            if(resourceInfo == null)
+                throw new FileNotFoundException(
+                    string.Format("Resource {0} was not found.", resourceUri));
             return resourceInfo.Stream;
         }
     }

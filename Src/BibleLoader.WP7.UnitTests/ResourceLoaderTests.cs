@@ -17,6 +17,7 @@
 
 #endregion
 
+using System.IO;
 using System.Text;
 using BibleLib.Reader;
 using NUnit.Framework;
@@ -26,25 +27,46 @@ namespace BibleLoader.WP7.UnitTests
     [TestFixture]
     public class ResourceLoaderTests
     {
-        [Test]
-        public void ResourceLoader_should_read_data_asynchronously_from_xap()
+        private const string sampleTxtData =
+            @"Some Sample Data. UTF8 with no byte order mark. <Used in ResourceLoaderTests unit tests. Do Not Change>";
+        private const string sampleSubdirectoryTxtData =
+            @"Some Sample Data. UTF8 with no byte order mark. <Used in ResourceLoaderTests ""Subdirectory"" unit tests. Do Not Change>";
+        private const string sampleBaseTxtData =
+            @"Some Sample Data. UTF8 with no byte order mark. <Used in ResourceLoaderTests ""Base"" unit tests. Do Not Change>";
+
+        [TestCase(null, "ResourceLoaderTestData.txt", sampleTxtData)]
+        [TestCase(null, "ResourceLoaderTestData/ResourceLoaderTestData.txt", sampleSubdirectoryTxtData, 
+            Description = "With Subdirectory")]
+        [TestCase("", "ResourceLoaderTestData.txt", sampleTxtData,
+            Description = "With empty string for BaseUri")]
+        [TestCase("ResourceLoaderTestData/", "BaseResourceLoaderTestData.txt", sampleBaseTxtData,
+            Description = "With BaseUri")]
+        public void ResourceLoader_should_read_data_asynchronously_from_xap(string baseUri, string path, string expectedValue)
         {
-            var loader = CreateResourceLoaderUnderTest();
+            var loader = (IResourceLoader) new ResourceLoader(baseUri);
 
-            var str = loader.GetResourceStream("Sample.txt");
+            var str = loader.GetResourceStream(path);
 
+            var data = ReadDataFromStream(str);
+
+            Assert.That(data, Is.EqualTo(expectedValue));
+        }
+
+        [Test]
+        public void ResourceLoader_should_throw_if_resource_not_found()
+        {
+            var loader = (IResourceLoader) new ResourceLoader("ResourceLoaderTestData/");
+            
+            Assert.Throws<FileNotFoundException>(() => loader.GetResourceStream("FileNotFound.txt"));
+        }
+
+        private static string ReadDataFromStream(Stream str)
+        {
             var buff = new byte[10000];
             var asyncResult = str.BeginRead(buff, 0, buff.Length, null, null);
 
             var bytesRead = str.EndRead(asyncResult);
-            var data = Encoding.UTF8.GetString(buff, 0, bytesRead);
-
-            Assert.That(data, Is.EqualTo("Some Sample Data. <Use in a unit tests. Do Not Change>"));
-        }
-
-        private static IResourceLoader CreateResourceLoaderUnderTest()
-        {
-            return new ResourceLoader();
+            return Encoding.UTF8.GetString(buff, 0, bytesRead);
         }
     }
 }

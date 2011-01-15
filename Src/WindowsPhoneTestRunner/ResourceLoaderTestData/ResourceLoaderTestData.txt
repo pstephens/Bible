@@ -1,0 +1,1 @@
+Some Sample Data. UTF8 with no byte order mark. <Used in ResourceLoaderTests "Subdirectory" unit tests. Do Not Change>
