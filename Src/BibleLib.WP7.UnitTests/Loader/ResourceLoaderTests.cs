@@ -19,10 +19,11 @@
 
 using System.IO;
 using System.Text;
+using BibleLib.Loader;
 using BibleLib.Reader;
 using NUnit.Framework;
 
-namespace BibleLoader.WP7.UnitTests
+namespace BibleLib.UnitTests.Loader
 {
     [TestFixture]
     public class ResourceLoaderTests

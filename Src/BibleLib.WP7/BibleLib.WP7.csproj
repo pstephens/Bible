@@ -52,6 +52,7 @@
     <Compile Include="..\BibleLib\Reader\*.cs">
       <Link>Reader\%(FileName)</Link>
     </Compile>
+    <Compile Include="Loader\ResourceLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

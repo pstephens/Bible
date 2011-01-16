@@ -22,7 +22,7 @@ using System.IO;
 using System.Windows;
 using BibleLib.Reader;
 
-namespace BibleLoader.WP7
+namespace BibleLib.Loader
 {
     public class ResourceLoader : IResourceLoader
     {

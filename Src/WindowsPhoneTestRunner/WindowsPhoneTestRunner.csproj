@@ -111,10 +111,6 @@
       <Project>{512E4F07-9A33-4FDB-A86A-D8BAAE42DCA0}</Project>
       <Name>BibleLib.WP7.UnitTests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BibleLoader.WP7.UnitTests\BibleLoader.WP7.UnitTests.csproj">
-      <Project>{767426A1-2F19-4196-87AD-C4C7461ABDB5}</Project>
-      <Name>BibleLoader.WP7.UnitTests</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
