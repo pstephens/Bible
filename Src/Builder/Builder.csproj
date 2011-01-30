@@ -206,6 +206,7 @@
     <ProjectReference Include="..\BibleLib\BibleLib.csproj">
       <Project>{DC016D01-5CC2-46BE-B355-FB452A5491A8}</Project>
       <Name>BibleLib %28BibleLib\BibleLib%29</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

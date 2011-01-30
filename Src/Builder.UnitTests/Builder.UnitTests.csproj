@@ -34,6 +34,7 @@
     <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\Libraries\Rhino.Mocks.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -72,10 +73,12 @@
     <ProjectReference Include="..\BibleLib\BibleLib.csproj">
       <Project>{DC016D01-5CC2-46BE-B355-FB452A5491A8}</Project>
       <Name>BibleLib %28BibleLib\BibleLib%29</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Builder\Builder.csproj">
       <Project>{CC9922D2-CD8F-4968-A46A-4282432045F8}</Project>
       <Name>Builder</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
