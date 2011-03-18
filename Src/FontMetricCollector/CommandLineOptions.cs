@@ -17,85 +17,26 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FontMetricCollector
 {
     internal class CommandLineOptions
     {
         public string OutputPath { get; private set; }
+        public string FontFamily { get; private set; }
         public bool IsValid { get; private set; }
-        public bool ShowHelp { get; private set; }
-        public ICollection<string> FontFamilies { get; private set; }
-        public ICollection<string> Messages { get; private set; }
+        private string ErrorMessage { get; set; }
 
-        public CommandLineOptions(IEnumerable<string> args)
+        public static CommandLineOptions Parse(string[] args)
         {
-            FontFamilies = new List<string>();
-            Messages = new List<string>();
-            IsValid = Parse(args ?? Enumerable.Empty<string>()) && Validate();
+            return new CommandLineOptions();
         }
 
-        private bool Parse(IEnumerable<string> args)
+        public IEnumerable<string> GetOutputMessage()
         {
-            if (args == null) 
-                return true;
-            foreach(var arg in args.Where(arg => arg != null && !string.IsNullOrWhiteSpace(arg)))
-            {
-                if (arg.StartsWith("-") || arg.StartsWith("/"))
-                {
-                    if (!ParseSwitch(arg)) 
-                        return false;
-                }
-                else
-                {
-                    if (OutputPath == null)
-                        OutputPath = arg;
-                    else
-                        FontFamilies.Add(arg);
-                }
-            }
-            return true;
-        }
-
-        private bool Validate()
-        {
-            if (OutputPath == null)
-            {
-                AddMessage("The outputPath parameter must be specified.");
-                return false;
-            }
-
-            return true;
-        }
-
-        private void AddMessage(string msg)
-        {
-            Messages.Add(msg);
-        }
-
-        private void AddMessage(string msg, params object[] args)
-        {
-            AddMessage(string.Format(msg, args));
-        }
-
-        private bool ParseSwitch(string arg)
-        {
-            var p = arg.Substring(1).ToLower();
-            switch(p)
-            {
-                case "?":
-                case "h":
-                case "help":
-                    ShowHelp = true;
-                    return true;
-
-                default:
-                    AddMessage("Invalid argument: '{0}'", arg);
-                    return false;
-            }
+            yield break;
+            // Console.WriteLine("Syntax: FontMetricCollector <outputPath> FontFamily1 [FontFamily2] [FontFamilyN] [-help]");
         }
     }
 }

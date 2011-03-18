@@ -24,13 +24,6 @@ namespace FontMetricCollector.UnitTests
     [TestFixture]
     public class CommandLineOptionsTests
     {
-        [Test]
-        public void Constructed_with_no_arguments_should_be_invalid()
-        {
-            var options = new CommandLineOptions(new string[0]);
 
-            Assert.That(options.IsValid, Is.False);
-            Assert.That(options.Messages.Count, Is.GreaterThan(0));
-        }
     }
 }

@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FontMetricCollector
 {
@@ -26,16 +27,16 @@ namespace FontMetricCollector
     {
         static int Main(string[] args)
         {
-            var options = new CommandLineOptions(args);
+            var options = CommandLineOptions.Parse(args);
             if(!options.IsValid)
             {
-                OutputHelpMessage(options.Messages);
+                OutputHelpMessage(options.GetOutputMessage());
                 return 1;
             }
 
             try
             {
-                OutputFontMetricData(options);
+                OutputFontMetricData(options.OutputPath, options.FontFamily);
                 return 0;
             }
             catch (Exception ex)
@@ -50,10 +51,9 @@ namespace FontMetricCollector
         {
             foreach(var msg in msgs)
                 Console.WriteLine(msg);
-            Console.WriteLine("Syntax: FontMetricCollector <outputPath> FontFamily1 [FontFamily2] [FontFamilyN] [-help]");
         }
 
-        private static void OutputFontMetricData(CommandLineOptions options)
+        private static void OutputFontMetricData(string path, string fontFamily)
         {
             
         }
