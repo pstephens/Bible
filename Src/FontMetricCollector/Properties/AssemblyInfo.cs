@@ -21,12 +21,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("FontMetricCollector")]
+[assembly: AssemblyTitle("Font Metric Collector")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Diligent Software")]
 [assembly: AssemblyProduct("FontMetricCollector")]
-[assembly: AssemblyCopyright("Copyright ©  2011")]
+[assembly: AssemblyCopyright("Copyright 2011 Peter Stephens")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

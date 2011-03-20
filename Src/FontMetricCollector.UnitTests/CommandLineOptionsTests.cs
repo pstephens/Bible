@@ -17,6 +17,8 @@
 
 #endregion
 
+using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace FontMetricCollector.UnitTests
@@ -24,6 +26,41 @@ namespace FontMetricCollector.UnitTests
     [TestFixture]
     public class CommandLineOptionsTests
     {
+        [TestCase(0, false)]
+        [TestCase(1, false)]
+        [TestCase(2, true)]
+        [TestCase(3, false)]
+        public void Parse_should_require_exactly_2_arguments(int argumentCount, bool shouldBeValid)
+        {
+            var arguments = Enumerable.Repeat("validArg", argumentCount).ToArray();
 
+            var options = CommandLineOptions.Parse(arguments);
+
+            Assert.That(options.IsValid, Is.EqualTo(shouldBeValid));
+        }
+        
+        [Test]
+        public void Parse_with_null_args_should_throw()
+        {
+            Assert.Throws<ArgumentNullException>(() => CommandLineOptions.Parse(null));
+        }
+
+        [Test]
+        public void Options_should_have_message_when_invalid()
+        {
+            var options = CommandLineOptions.Parse(new string[0]);
+
+            Assert.That(options.GetOutputMessage().Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void Options_should_have_no_message_when_valid()
+        {
+            var args = Enumerable.Repeat("asdf", 2).ToArray();
+
+            var options = CommandLineOptions.Parse(args);
+
+            Assert.That(options.GetOutputMessage().Count(), Is.EqualTo(0));
+        }
     }
 }

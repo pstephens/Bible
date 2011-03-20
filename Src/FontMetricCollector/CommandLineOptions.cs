@@ -17,6 +17,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 
 namespace FontMetricCollector
@@ -26,17 +27,49 @@ namespace FontMetricCollector
         public string OutputPath { get; private set; }
         public string FontFamily { get; private set; }
         public bool IsValid { get; private set; }
-        private string ErrorMessage { get; set; }
+        public string ErrorMessage { get; private set; }
 
         public static CommandLineOptions Parse(string[] args)
         {
-            return new CommandLineOptions();
+            if(args == null)
+                throw new ArgumentNullException("args");
+
+            var options = new CommandLineOptions();
+
+            if (args.Length < 1)
+            {
+                options.SetErrorMessage("OutputFile is a required argument.");
+            }
+            else if (args.Length < 2)
+            {
+                options.SetErrorMessage("FontFamily is a required argument.");
+            }
+            else if (args.Length > 2)
+            {
+                options.SetErrorMessage("Only two arguments are supported.");
+            }
+            else
+            {
+                options.OutputPath = args[0];
+                options.FontFamily = args[1];
+                options.IsValid = true;
+            }
+
+            return options;
         }
 
         public IEnumerable<string> GetOutputMessage()
         {
-            yield break;
-            // Console.WriteLine("Syntax: FontMetricCollector <outputPath> FontFamily1 [FontFamily2] [FontFamilyN] [-help]");
+            if (IsValid)
+                yield break;
+            if(!string.IsNullOrEmpty(ErrorMessage))
+                yield return "Error: " + ErrorMessage;
+            yield return "Syntax: FontMetricCollector path fontfamily";
+        }
+
+        private void SetErrorMessage(string msg)
+        {
+            
         }
     }
 }

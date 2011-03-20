@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace FontMetricCollector
 {
@@ -27,6 +28,13 @@ namespace FontMetricCollector
     {
         static int Main(string[] args)
         {
+            Console.WriteLine("{0} {1}",
+                GetAssemblyAttributeData<AssemblyTitleAttribute, string>(attr => attr.Title),
+                Assembly.GetExecutingAssembly().GetName().Version);
+            Console.WriteLine(
+                GetAssemblyAttributeData<AssemblyCopyrightAttribute, string>(attr => attr.Copyright));
+            Console.WriteLine();
+
             var options = CommandLineOptions.Parse(args);
             if(!options.IsValid)
             {
@@ -45,6 +53,16 @@ namespace FontMetricCollector
                                   ex.Message);
                 return 1;
             }
+        }
+
+        private static TRet GetAssemblyAttributeData<TAttr, TRet>(Func<TAttr, TRet> transform)
+        {
+            return
+                Assembly.GetExecutingAssembly()
+                    .GetCustomAttributes(typeof (TAttr), false)
+                    .Cast<TAttr>()
+                    .Select(transform)
+                    .SingleOrDefault();
         }
 
         private static void OutputHelpMessage(IEnumerable<string> msgs)
