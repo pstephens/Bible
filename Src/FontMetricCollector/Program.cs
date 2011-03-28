@@ -19,8 +19,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace FontMetricCollector
 {
@@ -28,12 +31,7 @@ namespace FontMetricCollector
     {
         static int Main(string[] args)
         {
-            Console.WriteLine("{0} {1}",
-                GetAssemblyAttributeData<AssemblyTitleAttribute, string>(attr => attr.Title),
-                Assembly.GetExecutingAssembly().GetName().Version);
-            Console.WriteLine(
-                GetAssemblyAttributeData<AssemblyCopyrightAttribute, string>(attr => attr.Copyright));
-            Console.WriteLine();
+            OutputBanner();
 
             var options = CommandLineOptions.Parse(args);
             if(!options.IsValid)
@@ -55,6 +53,16 @@ namespace FontMetricCollector
             }
         }
 
+        private static void OutputBanner()
+        {
+            Console.WriteLine("{0} {1}",
+                              GetAssemblyAttributeData<AssemblyTitleAttribute, string>(attr => attr.Title),
+                              Assembly.GetExecutingAssembly().GetName().Version);
+            Console.WriteLine(
+                GetAssemblyAttributeData<AssemblyCopyrightAttribute, string>(attr => attr.Copyright));
+            Console.WriteLine();
+        }
+
         private static TRet GetAssemblyAttributeData<TAttr, TRet>(Func<TAttr, TRet> transform)
         {
             return
@@ -71,9 +79,28 @@ namespace FontMetricCollector
                 Console.WriteLine(msg);
         }
 
-        private static void OutputFontMetricData(string path, string fontFamily)
+        private static void OutputFontMetricData(string path, string font)
         {
-            
+            var fontfamily = LookupFontFamily(font);
+
+            using (var str = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                var writer = new FontMetricWriter(str, fontfamily);
+                writer.Write();
+            }
+        }
+
+        private static FontFamily LookupFontFamily(string font)
+        {
+            var matchingFontFamilies = Fonts.SystemFontFamilies
+                .Where(f => f.FamilyNames[XmlLanguage.GetLanguage("us-en")].Equals(font))
+                .ToArray();
+
+            if (matchingFontFamilies.Length <= 0)
+                throw new Exception(string.Format("Font family '{0}' was not found.", font));
+            if (matchingFontFamilies.Length > 1)
+                throw new Exception(string.Format("More than one font family matches the name '{0}'.", font));
+            return matchingFontFamilies[0];
         }
     }
 }
