@@ -65,7 +65,6 @@
     <ProjectReference Include="..\BibleLib.WP7\BibleLib.WP7.csproj">
       <Project>{8FFE626D-D075-4C14-A387-83C655CE5C47}</Project>
       <Name>BibleLib.WP7</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

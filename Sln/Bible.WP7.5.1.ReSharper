@@ -1,0 +1,14 @@
+<Configuration>
+  <SharedSolutionTemplateManager>
+    <LiveTemplates>
+      <Template uid="85c23090-1434-47d0-941c-7c6370119922" shortcut="license" description="Apache 2 License" text="#region Copyright Notice&#xD;&#xA;/* Copyright 2009-2011 Peter Stephens&#xD;&#xA;&#xD;&#xA;   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xD;&#xA;   you may not use this file except in compliance with the License.&#xD;&#xA;   You may obtain a copy of the License at&#xD;&#xA;&#xD;&#xA;       http://www.apache.org/licenses/LICENSE-2.0&#xD;&#xA;&#xD;&#xA;   Unless required by applicable law or agreed to in writing, software&#xD;&#xA;   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xD;&#xA;   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;&#xA;   See the License for the specific language governing permissions and&#xD;&#xA;   limitations under the License.&#xD;&#xA; */&#xD;&#xA;#endregion" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeAndNamespace" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+    </LiveTemplates>
+  </SharedSolutionTemplateManager>
+</Configuration>

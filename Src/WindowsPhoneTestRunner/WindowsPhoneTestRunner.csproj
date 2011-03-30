@@ -104,7 +104,19 @@
     <ProjectReference Include="..\BibleLib.WP7.UnitTests\BibleLib.WP7.UnitTests.csproj">
       <Project>{512E4F07-9A33-4FDB-A86A-D8BAAE42DCA0}</Project>
       <Name>BibleLib.WP7.UnitTests</Name>
-      <Private>False</Private>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\BibleLib.WP7\BibleLib.WP7.csproj">
+      <Project>{8FFE626D-D075-4C14-A387-83C655CE5C47}</Project>
+      <Name>BibleLib.WP7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EverlastingBible.WP7.Specs\EverlastingBible.WP7.Specs.csproj">
+      <Project>{92E2D51F-4BD6-418E-BACD-E4A7BBFE939E}</Project>
+      <Name>EverlastingBible.WP7.Specs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EverlastingBible.WP7\EverlastingBible.WP7.csproj">
+      <Project>{F4A74AE2-CEBC-4EDF-BF30-5E5F7632392A}</Project>
+      <Name>EverlastingBible.WP7</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

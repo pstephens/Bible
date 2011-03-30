@@ -9,6 +9,8 @@ Properties {
 	$BuildToolsDir =  "$ViewRoot\BuildTools"
 	$ExternalAssetsDir = "$ViewRoot\ExternalAssets"
 	$Configuration = "Release"
+	$Slns = "$ViewRoot\Sln\Bible.sln",
+		"$ViewROot\Sln\Bible.WP7.sln"
 }
 
 Task default -depends UnitTests
@@ -20,7 +22,7 @@ Task UnitTests -depends Build {
 	}
 	Exec { 
 		..\ExternalAssets\Nunit\nunit-console.exe `
-			$ViewRoot\Bible2.nunit `
+			$ViewRoot\Bible.nunit `
 			/xml:$ViewRoot\Artifacts\BuildLogs\TestResult.xml 
 	}
 }
@@ -41,5 +43,9 @@ Task Clean -depends CleanExternalAssets {
 
 function ExecMsBuild([string[]] $Targets)
 {
-	msbuild "$ViewRoot\Bible2.sln" /t:$($Targets -join ";") /maxcpucount /p:Configuration=$Configuration
+	foreach($sln in $Slns)
+	{
+		Write-Host "msbuild $sln /t:$($Targets -join ';') /maxcpucount /p:Configuration=$Configuration"
+		msbuild $sln /t:$($Targets -join ";") /maxcpucount /p:Configuration=$Configuration
+	}
 }

@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builders", "Builders", "{4F648B32-FAE8-413B-BE38-1559E35AB523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normalizer", "..\Src\Normalizer\Normalizer.csproj", "{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "..\Src\Builder\Builder.csproj", "{CC9922D2-CD8F-4968-A46A-4282432045F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder.UnitTests", "..\Src\Builder.UnitTests\Builder.UnitTests.csproj", "{D51AAE4C-24B6-4639-908A-C2A2A85F388C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BibleLib", "BibleLib", "{11829B32-4816-430F-BA16-E950AE9CF8CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleLib", "..\Src\BibleLib\BibleLib.csproj", "{DC016D01-5CC2-46BE-B355-FB452A5491A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleLib.UnitTests", "..\Src\BibleLib.UnitTests\BibleLib.UnitTests.csproj", "{649AF0FA-51D3-4887-A6A3-F7369CCBCB84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontMetricCollector", "..\Src\FontMetricCollector\FontMetricCollector.csproj", "{20B5417D-68FE-4135-85CC-F80A1618D013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontMetricCollector.UnitTests", "..\Src\FontMetricCollector.UnitTests\FontMetricCollector.UnitTests.csproj", "{09CC0F97-F57D-4194-9186-1F577FB5A328}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC9922D2-CD8F-4968-A46A-4282432045F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9922D2-CD8F-4968-A46A-4282432045F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9922D2-CD8F-4968-A46A-4282432045F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9922D2-CD8F-4968-A46A-4282432045F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51AAE4C-24B6-4639-908A-C2A2A85F388C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649AF0FA-51D3-4887-A6A3-F7369CCBCB84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649AF0FA-51D3-4887-A6A3-F7369CCBCB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649AF0FA-51D3-4887-A6A3-F7369CCBCB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649AF0FA-51D3-4887-A6A3-F7369CCBCB84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20B5417D-68FE-4135-85CC-F80A1618D013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20B5417D-68FE-4135-85CC-F80A1618D013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20B5417D-68FE-4135-85CC-F80A1618D013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20B5417D-68FE-4135-85CC-F80A1618D013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09CC0F97-F57D-4194-9186-1F577FB5A328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09CC0F97-F57D-4194-9186-1F577FB5A328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09CC0F97-F57D-4194-9186-1F577FB5A328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09CC0F97-F57D-4194-9186-1F577FB5A328}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E4A0E90F-EE4B-45E8-AB7A-2DCF6AF386A2} = {4F648B32-FAE8-413B-BE38-1559E35AB523}
+		{CC9922D2-CD8F-4968-A46A-4282432045F8} = {4F648B32-FAE8-413B-BE38-1559E35AB523}
+		{D51AAE4C-24B6-4639-908A-C2A2A85F388C} = {4F648B32-FAE8-413B-BE38-1559E35AB523}
+		{20B5417D-68FE-4135-85CC-F80A1618D013} = {4F648B32-FAE8-413B-BE38-1559E35AB523}
+		{09CC0F97-F57D-4194-9186-1F577FB5A328} = {4F648B32-FAE8-413B-BE38-1559E35AB523}
+		{DC016D01-5CC2-46BE-B355-FB452A5491A8} = {11829B32-4816-430F-BA16-E950AE9CF8CA}
+		{649AF0FA-51D3-4887-A6A3-F7369CCBCB84} = {11829B32-4816-430F-BA16-E950AE9CF8CA}
+	EndGlobalSection
+EndGlobal
