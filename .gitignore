@@ -1,5 +1,5 @@
 *.suo
-/_ReSharper*
+_ReSharper*
 /Bin
 *ReSharper.user
 obj
